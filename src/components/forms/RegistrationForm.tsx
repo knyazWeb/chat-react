@@ -6,7 +6,7 @@ import { ISignupForm } from "@/pages/registration/interfaces";
 import { regExpEmail } from "@/shared/regExp/regExpEmail";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
   const [loading, setLoading] = useState<boolean>(false)
@@ -131,7 +131,7 @@ const RegistrationForm = () => {
       
         disabled={loading}
         htmlType="submit"
-        className="w-fit mx-auto px-5"
+        className="w-fit mx-auto px-5 mt-3"
       >
         Registration
       </Button>
