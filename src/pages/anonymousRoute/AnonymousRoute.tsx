@@ -2,20 +2,18 @@ import { supabase } from "@/helpers/supabaseClient";
 import { useAppDispatch } from "@/hooks/redux";
 import { login, logout } from "@/store/slices/authSlice";
 import { useEffect, useState } from "react";
-import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 
-const RequireAuth = () => {
+
+const AnonymousRoute = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isAuth, setIsAuth] = useState(false);
   const dispatch = useAppDispatch();
-  
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const { data } = await supabase.auth.getUser();
-        //FIXME: УБРАТЬ CL
-        console.log("data", data);
         if (data.user && data.user.email && data.user.id && data.user.user_metadata.first_name) {
           dispatch(
             login({
@@ -41,13 +39,13 @@ const RequireAuth = () => {
   }
 
   return isAuth ? (
-    <Outlet />
-  ) : (
     <Navigate
-      to="/login"
+      to="/"
       replace
     />
+  ) : (
+    <Outlet />
   );
-};
+}
 
-export default RequireAuth;
+export default AnonymousRoute

@@ -7,13 +7,10 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { supabase } from "@/helpers/supabaseClient";
-import { useAppDispatch } from "@/hooks/redux";
-import { login } from "@/store/slices/authSlice";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const {
     control,
     resetField,
@@ -38,17 +35,12 @@ const LoginForm = () => {
       email: loginFormData.email,
       password: loginFormData.password,
     });
+    console.log(loginData);
     if (loginData.error) {
       toast.error(loginData.error.message);
       resetField("email");
       resetField("password");
-    } else if (loginData.data.user.id && loginData.data.user.email && loginData.data.user.user_metadata.first_name) {
-      dispatch(login({
-        userId: loginData.data.user.id,
-        userEmail: loginData.data.user.email,
-        userName: loginData.data.user.user_metadata.full_name,
-        isAuth: true,
-      }));
+    } else if (loginData.data.user) {
       toast.success("User logged in successfully");
       navigate("/", {replace: true});
     }
