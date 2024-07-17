@@ -1,16 +1,16 @@
-import { Button,  Input } from "antd";
+import { Button, Input } from "antd";
 import { UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { supabase } from "@/helpers/supabaseClient";
 import { ISignupForm } from "@/pages/registration/interfaces";
 import { regExpEmail } from "@/shared/regExp/regExpEmail";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { registrationUser } from "@/services/authService";
 
 const RegistrationForm = () => {
-  const [loading, setLoading] = useState<boolean>(false)
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
   const {
     control,
     resetField,
@@ -19,38 +19,28 @@ const RegistrationForm = () => {
   } = useForm<ISignupForm>();
 
   const onSubmit: SubmitHandler<ISignupForm> = async (data) => {
-    setLoading(true)
-    
+    setLoading(true);
+
     const signupFormData = {
       name: data.name,
       email: data.email,
       password: data.password,
+    };
+    try {
+      const signupData = await registrationUser(signupFormData);
+      if (signupData.error) {
+        toast.error(signupData.error.message);
+        resetField("email");
+        resetField("password");
+      } else if (signupData.data.user) {
+        toast.success("User created successfully");
+        navigate("/login");
+      }
+    } catch (e) {
+      console.error(e);
     }
-    console.log('signupFormData',signupFormData)
-    await registrationUser(signupFormData)
-    setLoading(false)
+    setLoading(false);
   };
-  
-  async function registrationUser(signupFormData: ISignupForm) {
-    const authData = await supabase.auth.signUp({
-      email: signupFormData.email,
-      password: signupFormData.password,
-      options: {
-        data: {
-          first_name: signupFormData.name,
-        },
-      },
-    });
-    if (authData.error) {
-      toast.error(authData.error.message)
-      resetField("email");
-      resetField("password")
-    } else if (authData.data.user) {
-      toast.success("User created successfully")
-      navigate('/login')
-    }
-    
-  }
 
   return (
     <form
@@ -128,7 +118,6 @@ const RegistrationForm = () => {
       </div>
 
       <Button
-      
         disabled={loading}
         htmlType="submit"
         className="w-fit mx-auto px-5 mt-3"

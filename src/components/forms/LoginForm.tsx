@@ -6,7 +6,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
-import { supabase } from "@/helpers/supabaseClient";
+import { loginUser } from "@/services/authService";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -20,31 +20,25 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
     setLoading(true);
-
     const loginFormData = {
       email: data.email,
       password: data.password,
     };
-    console.log("loginFormData", loginFormData);
-    await loginUser(loginFormData);
+    try {
+      const loginData = await loginUser(loginFormData);
+      if (loginData.error) {
+        toast.error(loginData.error.message);
+        resetField("email");
+        resetField("password");
+      } else if (loginData.data.user) {
+        toast.success("User logged in successfully");
+        navigate("/", { replace: true });
+      }
+    } catch(e) {
+      console.error(e)
+    }
     setLoading(false);
   };
-
-  async function loginUser(loginFormData: ILoginForm) {
-    const loginData = await supabase.auth.signInWithPassword({
-      email: loginFormData.email,
-      password: loginFormData.password,
-    });
-    console.log(loginData);
-    if (loginData.error) {
-      toast.error(loginData.error.message);
-      resetField("email");
-      resetField("password");
-    } else if (loginData.data.user) {
-      toast.success("User logged in successfully");
-      navigate("/", {replace: true});
-    }
-  }
 
   return (
     <form

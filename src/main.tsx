@@ -10,10 +10,9 @@ import { Toaster } from 'react-hot-toast'
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <section className="flex w-screen h-screen justify-center items-center px-3">
         <RouterProvider router={router} />
         <Toaster position="bottom-right" />
-      </section>
+    
     </Provider>
   </React.StrictMode>
 );
