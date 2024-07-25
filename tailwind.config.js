@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        blueGradient: 'linear-gradient(to bottom right, #4a86f7, #2448b1)'
+      },
       colors: {
         pblue: "#4a86fc",
         title: "#35353D",

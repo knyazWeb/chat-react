@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { navbarList } from "./navbarList";
 import { Link, useLocation } from "react-router-dom";
+import CustomAddButton from "../customAddButton/CustomAddButton";
 
 const Navbar = () => {
   const location = useLocation();
   useEffect(() => {
-    console.log('message')
-  })
+    console.log("message");
+  });
   return (
     <nav
       style={{
@@ -14,13 +15,13 @@ const Navbar = () => {
       }}
       className={`h-[70px]  px-3 bg-white w-full fixed bottom-0 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out z-50`}
     >
-      <ul className="flex justify-between h-full items-center px-10">
+      <ul className="relative flex justify-between  max-w-[320px] mx-auto h-full items-center px-6">
         {navbarList.map((navbarItem, index) => {
           const ImageComponent = navbarItem.image;
           return (
             <li
               key={index}
-              className={`text-pblue transition-all duration-300 ease-in-out  ${
+              className={`text-pblue transition-all duration-300 ease-in-out basis-[59px] ${
                 location.pathname === navbarItem.link
                   ? "brightness-100 opacity-100"
                   : "brightness-75 opacity-70 hover:brightness-100 hover:opacity-100 "
@@ -36,6 +37,7 @@ const Navbar = () => {
             </li>
           );
         })}
+        <CustomAddButton />
       </ul>
     </nav>
   );
