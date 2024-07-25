@@ -120,7 +120,7 @@ const RegistrationForm = () => {
       <Button
         disabled={loading}
         htmlType="submit"
-        className="w-fit mx-auto px-5 mt-3"
+        className="w-fit mx-auto px-5 mt-3 bg-pblue text-white"
       >
         Registration
       </Button>

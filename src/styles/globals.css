@@ -5,8 +5,8 @@
 
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter','Roboto', sans-serif;
   font-weight: 400;
   
-  @apply text-white text-base
+  @apply text-white bg-bg text-base;
 }

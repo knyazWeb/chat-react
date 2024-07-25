@@ -1,34 +1,41 @@
-import { useState } from "react";
-import Burger from "./burger/Burger";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { navbarList } from "./navbarList";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const [burgerOpen, setBurgerOpen] = useState(false);
+  const location = useLocation();
+  useEffect(() => {
+    console.log('message')
+  })
   return (
     <nav
-      className={`px-3 bg-accent w-full fixed top-0 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out ${
-        burgerOpen ? "h-screen" : "h-[70px]"
-      }`}
+      style={{
+        boxShadow: "0 -1px 3px -1px rgba(0, 0, 0, 0.1), 0 -2px 2px -1px rgba(0, 0, 0, 0.06)",
+      }}
+      className={`h-[70px]  px-3 bg-white w-full fixed bottom-0 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out z-50`}
     >
-      <div className="h-[70px] w-full flex justify-end items-center">
-        <Burger
-          openState={burgerOpen}
-          setOpenState={setBurgerOpen}
-        />
-      </div>
-      <ul className={`flex items-center flex-col w-full transition-all duration-200 ease-in-out h-full ${burgerOpen ? "" : "opacity-0 overflow-hidden h-0"}`}>
-        <li>
-          <Link to=""></Link>1 menu
-        </li>
-        <li>
-          <Link to=""></Link>2 menu
-        </li>
-        <li>
-          <Link to=""></Link>3 menu
-        </li>
-        <li>
-          <Link to=""></Link>4 menu
-        </li>
+      <ul className="flex justify-between h-full items-center px-10">
+        {navbarList.map((navbarItem, index) => {
+          const ImageComponent = navbarItem.image;
+          return (
+            <li
+              key={index}
+              className={`text-pblue transition-all duration-300 ease-in-out  ${
+                location.pathname === navbarItem.link
+                  ? "brightness-100 opacity-100"
+                  : "brightness-75 opacity-70 hover:brightness-100 hover:opacity-100 "
+              }`}
+            >
+              <Link
+                to={navbarItem.link}
+                className="flex flex-col gap-1 items-center"
+              >
+                <ImageComponent size={28} />
+                <span className="text-xs font-medium">{navbarItem.name}</span>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

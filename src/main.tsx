@@ -11,7 +11,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
         <RouterProvider router={router} />
-        <Toaster position="bottom-right" />
+        <Toaster position="bottom-right" toastOptions={{
+          style: {
+            fontSize: "14px",
+            padding: "10px",
+          }
+        }} />
     
     </Provider>
   </React.StrictMode>

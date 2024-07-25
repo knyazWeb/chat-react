@@ -9,6 +9,8 @@ import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { loginUser } from "@/services/authService";
 
 const LoginForm = () => {
+  
+  
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const {
@@ -96,7 +98,7 @@ const LoginForm = () => {
       <Button
         disabled={loading}
         htmlType="submit"
-        className="w-fit mx-auto px-5 mt-3"
+        className="w-fit mx-auto px-5 mt-3 bg-pblue text-white"
       >
         Login
       </Button>
