@@ -1,19 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { navbarList } from "./navbarList";
 import { Link, useLocation } from "react-router-dom";
-import CustomAddButton from "../customAddButton/CustomAddButton";
+import CustomAddButton from "../ui/customAddButton/CustomAddButton";
 
 const Navbar = () => {
   const location = useLocation();
-  useEffect(() => {
-    console.log("message");
-  });
   return (
     <nav
       style={{
         boxShadow: "0 -1px 3px -1px rgba(0, 0, 0, 0.1), 0 -2px 2px -1px rgba(0, 0, 0, 0.06)",
       }}
-      className={`h-[70px]  px-3 bg-white w-full fixed bottom-0 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out z-50`}
+      className={`h-[70px] px-3 bg-white w-full fixed bottom-0 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out z-50`}
     >
       <ul className="relative flex justify-between  max-w-[320px] mx-auto h-full items-center px-6">
         {navbarList.map((navbarItem, index) => {

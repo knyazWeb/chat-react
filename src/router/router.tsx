@@ -1,6 +1,6 @@
 
-import AnonymousRoute from "@/components/protectedRoutes/anonymousRoute/AnonymousRoute";
-import RequireAuth from "@/components/protectedRoutes/requireAuth/RequireAuth";
+import AnonymousRoute from "@/router/protectedRoutes/anonymousRoute/AnonymousRoute";
+import RequireAuth from "@/router/protectedRoutes/requireAuth/RequireAuth";
 import Home from "@/pages/home/Home";
 import Login from "@/pages/login/Login";
 import Profile from "@/pages/profile/Profile";
