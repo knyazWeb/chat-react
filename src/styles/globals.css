@@ -7,6 +7,6 @@
 body {
   font-family: 'Inter','Roboto', sans-serif;
   font-weight: 400;
-  
+  overflow-x: hidden;
   @apply text-white bg-bg text-base;
 }

@@ -9,7 +9,8 @@ const ProfileMainCard = () => {
   return (
     <div
       
-      className="w-full shadow-customLight bg-white rounded-2xl pt-10 px-5 pb-5 flex flex-col items-center justify-start"
+      className="w-full shadow-customLight bg-white rounded-2xl pt-10 px-5 pb-5 flex flex-col items-center justify-start
+      mb-4"
     >
       <div className="mb-4">
         <ProfileAvatar />
