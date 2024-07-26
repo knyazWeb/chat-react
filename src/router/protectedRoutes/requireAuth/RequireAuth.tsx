@@ -41,12 +41,11 @@ const RequireAuth = () => {
   }
 
   return isAuth ? (
-    // div wrapper 70px for top menu
-    <div className="px-3 pt-[70px]">
-      <Navbar />
+    <div className="px-3">
       <main>
         <Outlet />
       </main>
+      <Navbar />
     </div>
   ) : (
     <Navigate

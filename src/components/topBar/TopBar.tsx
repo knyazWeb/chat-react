@@ -14,12 +14,12 @@ const TopBar = ({ children }: TopBarProps) => {
       className="h-[50px] fixed bg-white w-full top-0 left-0 flex justify-between gap-2 items-center px-4"
     >
       <button type="button">
-        <ArrowLeft className="text-[#B3BACE] " />
+        <ArrowLeft className="text-secondary " />
       </button>
 
-      <div className="text-title text-base">{children}</div>
+      <div className="text-title text-base font-medium">{children}</div>
       <button type="button">
-        <Ellipsis className="text-[#B3BACE]" />
+        <Ellipsis className="text-secondary" />
       </button>
     </div>
   );
