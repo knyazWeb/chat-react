@@ -1,6 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import RegistrationForm from "@/components/forms/RegistrationForm";
-import { useAppSelector } from "@/hooks/redux";
+import { useAppSelector } from "@/hooks";
 
 const Registration = () => {
   

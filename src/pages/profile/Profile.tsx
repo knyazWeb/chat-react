@@ -1,19 +1,14 @@
-import ProfileMainCard from "@/components/profile/profileMainCard/ProfileMainCard"
-import ProfileSettingsCard from "@/components/profile/profileSettingsCard/ProfileSettingsCard"
-import TopBar from "@/components/topBar/TopBar"
-
-
-
-
+import { ProfileMainCard, ProfileSettingsCard } from "@/components";
+import TopBar from "@/components/topBar/TopBar";
 
 const Profile = () => {
   return (
-    <div className="pt-[70px] flex flex-col items-center justify-start">
+    <div className="pt-[70px] flex flex-col items-center justify-start pb-[110px]">
       <TopBar>Profile and Settings</TopBar>
       <ProfileMainCard />
       <ProfileSettingsCard />
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-export default Profile
+export default Profile;

@@ -2,11 +2,11 @@ import { Button, Input } from "antd";
 import { UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { ISignupForm } from "@/pages/registration/interfaces";
-import { regExpEmail } from "@/shared/regExp/regExpEmail";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { registrationUser } from "@/services/authService";
+import { registrationUser } from "@/services";
+import { regExpEmail } from "@/shared";
 
 const RegistrationForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -27,16 +27,17 @@ const RegistrationForm = () => {
       password: data.password,
     };
     try {
+      //TODO: create loading state in toast while waiting registration response
       const signupData = await registrationUser(signupFormData);
-      if (signupData.error) {
-        toast.error(signupData.error.message);
-        resetField("email");
-        resetField("password");
-      } else if (signupData.data.user) {
+      if (signupData.user.authId) {
         toast.success("User created successfully");
         navigate("/login");
       }
     } catch (e) {
+      resetField("name");
+      resetField("email");
+      resetField("password");
+      toast.error("Registration was failed");
       console.error(e);
     }
     setLoading(false);

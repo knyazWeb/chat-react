@@ -1,6 +1,8 @@
-import { supabase } from "@/helpers/supabaseClient";
+import { SignupResponseI } from "@/components/forms/interfaces";
+import { supabase } from "@/helpers";
 import { ILoginForm } from "@/pages/login/interfaces";
 import { ISignupForm } from "@/pages/registration/interfaces";
+import axios from "axios";
 
 export async function loginUser(loginFormData: ILoginForm) {
   try {
@@ -14,18 +16,18 @@ export async function loginUser(loginFormData: ILoginForm) {
   }
 }
 
-export async function registrationUser(signupFormData: ISignupForm) {
+export async function registrationUser(signupFormData: ISignupForm): Promise<SignupResponseI > {
   try {
-    const authData = await supabase.auth.signUp({
-      email: signupFormData.email,
-      password: signupFormData.password,
-      options: {
-        data: {
-          first_name: signupFormData.name,
-        },
+    const authResponse = await axios({
+      method: "post",
+      url: `${import.meta.env.VITE_SERVER_URL}/api/auth/register`,
+      data: {
+        username: signupFormData.name,
+        email: signupFormData.email,
+        password: signupFormData.password,
       },
     });
-    return authData;
+    return authResponse.data;
   } catch {
     throw new Error("Registration was failed");
   }

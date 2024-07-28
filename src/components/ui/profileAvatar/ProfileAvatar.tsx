@@ -7,7 +7,7 @@ const ProfileAvatar = () => {
     <div className="relative bg-gradient-to-br  from-[#AE6DDD] to-[#4E1BB4] p-[3px] rounded-full select-none w-[85px] h-[85px]">
       <div>
         <img
-        className="w-full h-full"
+        className="w-full h-full rounded-full"
           src={avatar}
           alt=""
         />

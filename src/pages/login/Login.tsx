@@ -1,5 +1,7 @@
-import LoginForm from "@/components/forms/LoginForm";
-import { useAppSelector } from "@/hooks/redux";
+
+import { LoginForm } from "@/components";
+import { useAppSelector } from "@/hooks";
+
 import { Link, Navigate } from "react-router-dom";
 
 

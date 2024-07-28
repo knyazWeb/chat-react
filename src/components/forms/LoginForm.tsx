@@ -1,12 +1,12 @@
 import { ILoginForm } from "@/pages/login/interfaces";
-import { regExpEmail } from "@/shared/regExp/regExpEmail";
 import { Input, Button } from "antd";
 import { useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
-import { loginUser } from "@/services/authService";
+import { loginUser } from "@/services";
+import { regExpEmail } from "@/shared";
 
 const LoginForm = () => {
   

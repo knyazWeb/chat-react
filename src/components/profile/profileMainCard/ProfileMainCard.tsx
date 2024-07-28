@@ -1,6 +1,5 @@
-import CustomButton from "@/components/ui/customButton/CustomButton";
-import ProfileAvatar from "@/components/ui/profileAvatar/ProfileAvatar";
-import { useAppSelector } from "@/hooks/redux";
+import { CustomButton, ProfileAvatar } from "@/components";
+import { useAppSelector } from "@/hooks";
 import { Pen } from "lucide-react";
 interface ProfileMainCardProps {}
 

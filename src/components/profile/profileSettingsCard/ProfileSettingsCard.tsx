@@ -1,5 +1,4 @@
-import SelectSettingCard from "@/components/ui/selectSettingCard/SelectSettingCard";
-import ToggleSettingCard from "@/components/ui/toggleSettingCard/ToggleSettingCard";
+import { SelectSettingCard, ToggleSettingCard } from "@/components";
 import { Clock } from "lucide-react";
 import { Languages } from "lucide-react";
 import { Eclipse } from "lucide-react";

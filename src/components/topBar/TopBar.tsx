@@ -1,11 +1,13 @@
 import { ArrowLeft } from "lucide-react";
 
 import { Ellipsis } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 interface TopBarProps {
   children: React.ReactNode;
 }
 
 const TopBar = ({ children }: TopBarProps) => {
+  const navigate = useNavigate()
   return (
     <div
       style={{
@@ -13,7 +15,9 @@ const TopBar = ({ children }: TopBarProps) => {
       }}
       className="h-[50px] fixed bg-white w-full top-0 left-0 flex justify-between gap-2 items-center px-4"
     >
-      <button type="button">
+      <button type="button" onClick={() => {
+        navigate(-1)
+      }}>
         <ArrowLeft className="text-secondary " />
       </button>
 

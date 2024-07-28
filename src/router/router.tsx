@@ -1,11 +1,10 @@
 
-import AnonymousRoute from "@/router/protectedRoutes/anonymousRoute/AnonymousRoute";
-import RequireAuth from "@/router/protectedRoutes/requireAuth/RequireAuth";
-import Home from "@/pages/home/Home";
-import Login from "@/pages/login/Login";
-import Profile from "@/pages/profile/Profile";
-import Registration from "@/pages/registration/Registration";
+
+
 import { createBrowserRouter } from "react-router-dom";
+import Messages from "@/pages/messages/Messages";
+import { Home, Login, Profile, Registration } from "@/pages";
+import { AnonymousRoute, RequireAuth } from "@/components";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +14,10 @@ export const router = createBrowserRouter([
       {
         path: 'profile',
         element: <Profile />
+      },
+      {
+        path: 'messages',
+        element: <Messages />
       }
     ],
   },
@@ -22,11 +25,11 @@ export const router = createBrowserRouter([
     element: <AnonymousRoute />,
     children: [
       {
-        path: "signup",
+        path: "/signup",
         element: <Registration />,
       },
       {
-        path: "login",
+        path: "/login",
         element: <Login />,
       },
     ],

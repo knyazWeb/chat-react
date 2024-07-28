@@ -1,10 +1,11 @@
-import { supabase } from "@/helpers/supabaseClient";
-import { useAppDispatch } from "@/hooks/redux";
-import { login, logout } from "@/store/slices/authSlice";
+import { Navbar } from "@/components";
+import { supabase } from "@/helpers";
+import { useAppDispatch } from "@/hooks";
+import { login, logout } from "@/store";
 import { useEffect, useState } from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 
-const AnonymousRoute = () => {
+const RequireAuth = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isAuth, setIsAuth] = useState(false);
   const dispatch = useAppDispatch();
@@ -13,6 +14,8 @@ const AnonymousRoute = () => {
     const getUser = async () => {
       try {
         const { data } = await supabase.auth.getUser();
+        //FIXME: УБРАТЬ CL
+        console.log("data", data);
         if (data.user && data.user.email && data.user.id && data.user.user_metadata.first_name) {
           dispatch(
             login({
@@ -38,16 +41,18 @@ const AnonymousRoute = () => {
   }
 
   return isAuth ? (
+    <div className="px-3">
+      <main>
+        <Outlet />
+      </main>
+      <Navbar />
+    </div>
+  ) : (
     <Navigate
-      to="/"
+      to="/login"
       replace
     />
-  ) : (
-    // section for login and signup page 
-    <section className="flex w-screen h-screen justify-center items-center px-3">
-      <Outlet />
-    </section>
   );
 };
 
-export default AnonymousRoute;
+export default RequireAuth;

@@ -10,7 +10,7 @@ interface NavbarListI {
 export const navbarList: NavbarListI[] = [
   {
     name: "Messages",
-    link: "/",
+    link: "/messages",
     image: MessageSquareText,
   },
   {
