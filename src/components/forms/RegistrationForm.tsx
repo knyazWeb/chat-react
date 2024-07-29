@@ -1,12 +1,12 @@
 import { Button, Input } from "antd";
 import { UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { ISignupForm } from "@/pages/registration/interfaces";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { registrationUser } from "@/services";
 import { regExpEmail } from "@/shared";
+import { SignupFormI } from "./interfaces";
 
 const RegistrationForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -16,9 +16,9 @@ const RegistrationForm = () => {
     resetField,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISignupForm>();
+  } = useForm<SignupFormI>();
 
-  const onSubmit: SubmitHandler<ISignupForm> = async (data) => {
+  const onSubmit: SubmitHandler<SignupFormI> = async (data) => {
     setLoading(true);
 
     const signupFormData = {

@@ -1,10 +1,9 @@
 import { SignupResponseI } from "@/components/forms/interfaces";
 import { supabase } from "@/helpers";
-import { ILoginForm } from "@/pages/login/interfaces";
-import { ISignupForm } from "@/pages/registration/interfaces";
+import { LoginFormI, SignupFormI } from "@/components";
 import axios from "axios";
 
-export async function loginUser(loginFormData: ILoginForm) {
+export async function loginUser(loginFormData: LoginFormI) {
   try {
     const loginData = await supabase.auth.signInWithPassword({
       email: loginFormData.email,
@@ -16,7 +15,7 @@ export async function loginUser(loginFormData: ILoginForm) {
   }
 }
 
-export async function registrationUser(signupFormData: ISignupForm): Promise<SignupResponseI > {
+export async function registrationUser(signupFormData: SignupFormI): Promise<SignupResponseI> {
   try {
     const authResponse = await axios({
       method: "post",

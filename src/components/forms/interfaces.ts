@@ -5,3 +5,18 @@ export interface SignupResponseI {
     username: string;
   };
 }
+export interface LoginFormI {
+  email: string;
+  password: string;
+}
+
+export interface CreateChatFormI {
+  email: string;
+}
+
+export interface SignupFormI {
+  name: string;
+  email: string;
+  password: string;
+}
+

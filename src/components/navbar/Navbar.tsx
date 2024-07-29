@@ -1,9 +1,10 @@
 import { CustomAddButton } from "@/components";
 import { navbarList } from "./navbarList";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate()
   return (
     <nav
       style={{
@@ -33,7 +34,11 @@ const Navbar = () => {
             </li>
           );
         })}
-        <CustomAddButton />
+
+        <CustomAddButton
+          type="button"
+          onClick={() => navigate('/create-chat')}
+        />
       </ul>
     </nav>
   );

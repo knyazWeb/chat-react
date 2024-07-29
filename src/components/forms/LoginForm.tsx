@@ -1,4 +1,3 @@
-import { ILoginForm } from "@/pages/login/interfaces";
 import { Input, Button } from "antd";
 import { useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
@@ -7,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { loginUser } from "@/services";
 import { regExpEmail } from "@/shared";
+import { LoginFormI } from "./interfaces";
 
 const LoginForm = () => {
   
@@ -17,9 +17,9 @@ const LoginForm = () => {
     resetField,
     handleSubmit,
     formState: { errors },
-  } = useForm<ILoginForm>();
+  } = useForm<LoginFormI>();
 
-  const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
+  const onSubmit: SubmitHandler<LoginFormI> = async (data) => {
     setLoading(true);
     const loginFormData = {
       email: data.email,
@@ -35,8 +35,8 @@ const LoginForm = () => {
         toast.success("User logged in successfully");
         navigate("/", { replace: true });
       }
-    } catch(e) {
-      console.error(e)
+    } catch (e) {
+      console.error(e);
     }
     setLoading(false);
   };
