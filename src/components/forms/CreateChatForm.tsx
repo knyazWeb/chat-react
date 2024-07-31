@@ -25,14 +25,13 @@ const CreateChatForm = () => {
       email: data.email,
     };
     try {
-      const loginData = createChat({
+      const loginData = await createChat({
         creatorEmail: userSession.userEmail as string,
         friendEmail: createChatFormData.email as string,
       });
-      //FIXME: вылазит положительный результат даже когда ответ с ошибкой
       //TODO: нужно обработать когда такая комната уже существует
       toast.success("Chat created successfully");
-      navigate("/");
+      navigate("/messages");
     } catch (e) {
       resetField("email");
       toast.error(`${e}`);
@@ -66,11 +65,10 @@ const CreateChatForm = () => {
         />
         {errors.email && <span className="text-blue-500 text-xs">{errors.email.message}</span>}
       </div>
-
       <Button
         disabled={loading}
         htmlType="submit"
-        className="w-fit mx-auto px-5 mt-3 bg-pblue text-white"
+        className={`w-fit mx-auto px-5 mt-3 bg-pblue text-white ${loading ? "opacity-50" : ""}`}
       >
         Create chat
       </Button>

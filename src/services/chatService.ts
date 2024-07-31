@@ -14,8 +14,21 @@ export const createChat = async (createChatData: CreateChatDataI) => {
         email: createChatData.friendEmail,
       },
     });
-    return createChatResponse
+    return createChatResponse;
   } catch {
     throw new Error("Chat creation was failed");
+  }
+};
+
+export const getAllChats = async (authId: string) => {
+  try {
+    const chats = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/room/all-rooms`, {
+      params: {
+        authId: authId,
+      },
+    });
+    return chats.data;
+  } catch (error) {
+    throw new Error("Failed to get chats");
   }
 };
