@@ -1,6 +1,7 @@
 import { Navbar } from "@/components";
 import { supabase } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
+import { SocketProvider } from "@/shared";
 import { login, logout } from "@/store";
 import { useEffect, useState } from "react";
 import { Outlet, Navigate, useLocation } from "react-router-dom";
@@ -41,12 +42,14 @@ const RequireAuth = () => {
   }
 
   return isAuth ? (
-    <div className="px-3">
-      <main>
-        <Outlet />
-      </main>
-      <Navbar />
-    </div>
+    <SocketProvider>
+      <div className="px-3">
+        <main>
+          <Outlet />
+        </main>
+        <Navbar />
+      </div>
+    </SocketProvider>
   ) : (
     <Navigate
       to="/login"

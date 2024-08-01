@@ -17,7 +17,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             padding: "10px",
           }
         }} />
-    
     </Provider>
   </React.StrictMode>
 );
