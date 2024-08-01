@@ -1,28 +1,30 @@
-
-
-
 import { createBrowserRouter } from "react-router-dom";
 import Messages from "@/pages/messages/Messages";
-import { CreateChat, Home, Login, Profile, Registration } from "@/pages";
+import { Chat, CreateChat, Home, Login, Profile, Registration } from "@/pages";
 import { AnonymousRoute, RequireAuth } from "@/components";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RequireAuth />,
-    children: [{ index: true, element: <Home /> },
+    children: [
+      { index: true, element: <Home /> },
       {
-        path: 'profile',
-        element: <Profile />
+        path: "profile",
+        element: <Profile />,
       },
       {
-        path: 'messages',
-        element: <Messages />
+        path: "messages",
+        element: <Messages />,
+      },
+      {
+        path: "messages/:chatId",
+        element: <Chat />,
       },
       {
         path: "create-chat",
-        element: <CreateChat />
-      }
+        element: <CreateChat />,
+      },
     ],
   },
   {

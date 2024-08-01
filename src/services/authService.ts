@@ -2,8 +2,9 @@ import { SignupResponseI } from "@/components/forms/interfaces";
 import { supabase } from "@/helpers";
 import { LoginFormI, SignupFormI } from "@/components";
 import axios from "axios";
+import { AuthTokenResponsePassword } from "@supabase/supabase-js";
 
-export async function loginUser(loginFormData: LoginFormI) {
+export async function loginUser(loginFormData: LoginFormI): Promise<AuthTokenResponsePassword> {
   try {
     const loginData = await supabase.auth.signInWithPassword({
       email: loginFormData.email,

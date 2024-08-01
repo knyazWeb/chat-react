@@ -1,10 +1,29 @@
 import axios from "axios";
 
-interface CreateChatDataI {
+export interface CreateChatDataI {
   creatorEmail: string;
   friendEmail: string;
 }
-export const createChat = async (createChatData: CreateChatDataI) => {
+
+export interface CreateChatResponseI {
+  room: {
+    id: string;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
+
+export interface ChatItemI {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface ChatsResponseI {
+  rooms: ChatItemI[];
+}
+export const createChat = async (createChatData: CreateChatDataI): Promise<CreateChatResponseI> => {
   try {
     const createChatResponse = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/room/create`, {
       user1: {
@@ -14,20 +33,20 @@ export const createChat = async (createChatData: CreateChatDataI) => {
         email: createChatData.friendEmail,
       },
     });
-    return createChatResponse;
+    return createChatResponse.data;
   } catch {
     throw new Error("Chat creation was failed");
   }
 };
 
-export const getAllChats = async (authId: string) => {
+export const getAllChats = async (authId: string): Promise<ChatsResponseI> => {
   try {
-    const chats = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/room/all-rooms`, {
+    const chatsResponse = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/room/all-rooms`, {
       params: {
         authId: authId,
       },
     });
-    return chats.data;
+    return chatsResponse.data;
   } catch (error) {
     throw new Error("Failed to get chats");
   }

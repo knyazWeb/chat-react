@@ -36,7 +36,8 @@ const RequireAuth = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    //TODO: СДЕЛАТЬ LOADER
+    return <div className="text-black">Loading...</div>;
   } else if (!loading && !isAuth) {
     dispatch(logout());
   }

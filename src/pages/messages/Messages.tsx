@@ -1,12 +1,14 @@
 import { MessageCard } from "@/components";
 import TopBar from "@/components/topBar/TopBar";
 import { useAppSelector } from "@/hooks";
-import { getAllChats } from "@/services";
+import { ChatItemI, getAllChats } from "@/services";
 import { useEffect, useState } from "react";
+
+
 
 const Messages = () => {
   const userSession = useAppSelector((state) => state.auth);
-  const [chats, setChats] = useState([]);
+  const [chats, setChats] = useState<ChatItemI[]>([]);
   useEffect(() => {
     const getUserChats = async () => {
       try {
@@ -29,6 +31,7 @@ const Messages = () => {
           return (
             <div className="w-full mb-5" key={index}>
               <MessageCard
+                chatId={item.id}
                 name={item.name}
                 lastMessage="test test test test test"
                 lastMessageTime="21:00"
