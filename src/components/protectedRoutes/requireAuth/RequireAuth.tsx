@@ -2,9 +2,9 @@ import { Navbar } from "@/components";
 import { supabase } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { SocketProvider } from "@/shared";
-import { login, logout } from "@/store";
+import { fetchChats, login, logout } from "@/store";
 import { useEffect, useState } from "react";
-import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 
 const RequireAuth = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -27,6 +27,7 @@ const RequireAuth = () => {
             })
           );
           setIsAuth(true);
+          dispatch(fetchChats(data.user.id));
         }
       } finally {
         setLoading(false);

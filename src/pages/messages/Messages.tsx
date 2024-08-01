@@ -1,27 +1,13 @@
 import { MessageCard } from "@/components";
 import TopBar from "@/components/topBar/TopBar";
 import { useAppSelector } from "@/hooks";
-import { ChatItemI, getAllChats } from "@/services";
-import { useEffect, useState } from "react";
+
 
 
 
 const Messages = () => {
-  const userSession = useAppSelector((state) => state.auth);
-  const [chats, setChats] = useState<ChatItemI[]>([]);
-  useEffect(() => {
-    const getUserChats = async () => {
-      try {
-        const chats = await getAllChats(userSession.userId as string);
-        if (chats) {
-          setChats(chats.rooms);
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    getUserChats();
-  }, []);
+  const chats = useAppSelector((state) => state.chats);
+  
 
   return (
     <div className="pt-[70px] flex flex-col items-center justify-start pb-[110px]">
