@@ -4,3 +4,4 @@ export { default as MessageCardAvatar } from "./messageCardAvatar/MessageCardAva
 export { default as ProfileAvatar } from "./profileAvatar/ProfileAvatar";
 export { default as SelectSettingCard } from "./selectSettingCard/SelectSettingCard";
 export { default as ToggleSettingCard } from "./toggleSettingCard/ToggleSettingCard";
+export { default as MessageCloud } from "./messageCloud/MessageCloud";
