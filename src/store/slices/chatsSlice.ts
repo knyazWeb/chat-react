@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { UserChatI } from "../interfaces";
 import { ChatItemI, getAllChats } from "@/services";
 
-const initialState: UserChatI[] = [];
+const initialState: ChatItemI[] = [];
 
 type AsyncThunkConfig = {
   rejectValue: string;

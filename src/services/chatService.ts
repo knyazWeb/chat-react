@@ -15,7 +15,7 @@ export interface CreateChatResponseI {
 }
 
 export interface ChatItemI {
-  id: string;
+  id: number;
   name: string;
   createdAt: string;
   updatedAt: string;

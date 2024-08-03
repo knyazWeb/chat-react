@@ -1,10 +1,16 @@
 import { CustomAddButton } from "@/components";
 import { navbarList } from "./navbarList";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, matchPath, useLocation, useNavigate } from "react-router-dom";
+import { exclusionPaths } from "./exclusionPaths";
 
 const Navbar = () => {
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const isExcluded = exclusionPaths.some((path) => {
+    return matchPath(path, location.pathname);
+  });
+  if (isExcluded) return null;
+
   return (
     <nav
       style={{
@@ -37,7 +43,7 @@ const Navbar = () => {
 
         <CustomAddButton
           type="button"
-          onClick={() => navigate('/create-chat')}
+          onClick={() => navigate("/create-chat")}
         />
       </ul>
     </nav>

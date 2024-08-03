@@ -4,10 +4,3 @@ export interface UserAuthI {
   userEmail: string | null;
   isAuth: boolean;
 }
-
-export interface UserChatI {
-  id: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-}

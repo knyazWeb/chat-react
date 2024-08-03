@@ -1,4 +1,5 @@
 import { MessageCardAvatar } from "@/components";
+import { useAppSelector, useSocket } from "@/hooks";
 import { useNavigate } from "react-router-dom";
 
 
@@ -12,6 +13,7 @@ interface MessageCardProps {
 
 const MessageCard = ({name, lastMessage, lastMessageTime, chatId}: MessageCardProps) => {
   const navigate = useNavigate()
+
   const navigateUserToChat = () => {
     navigate(`/messages/${chatId}`)
   }

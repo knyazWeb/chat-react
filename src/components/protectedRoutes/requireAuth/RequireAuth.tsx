@@ -27,7 +27,7 @@ const RequireAuth = () => {
             })
           );
           setIsAuth(true);
-          dispatch(fetchChats(data.user.id));
+          await dispatch(fetchChats(data.user.id));
         }
       } finally {
         setLoading(false);
