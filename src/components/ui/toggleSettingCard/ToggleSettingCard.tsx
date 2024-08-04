@@ -4,13 +4,14 @@ import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 interface ToggleSettingCardProps {
   children: React.ReactNode;
-  defaultToggleValue: boolean;
+  defaultToggleValue: string;
+  changeToggleValue: (value: string) => void;
   Image: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
   iconColor: string;
   bgColor: string;
 }
 
-const ToggleSettingCard = ({ children, defaultToggleValue, Image, iconColor, bgColor }: ToggleSettingCardProps) => {
+const ToggleSettingCard = ({ children, defaultToggleValue, changeToggleValue, Image, iconColor, bgColor }: ToggleSettingCardProps) => {
   return (
     <div className="bg-transparent flex justify-between items-center gap-2 w-full">
       <div className="flex gap-2 items-center justify-start">
@@ -21,8 +22,9 @@ const ToggleSettingCard = ({ children, defaultToggleValue, Image, iconColor, bgC
       </div>
       <div className="flex gap-2 items-center justify-end pr-1">
         <Switch
+          onChange={() => changeToggleValue(defaultToggleValue === "dark" ? "light" : "dark")}
           className="bg-stroke aria-checked:bg-pblue "
-          defaultChecked={defaultToggleValue}
+          defaultChecked={defaultToggleValue === "dark" ? true : false} 
           size="small"
         />
       </div>

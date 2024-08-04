@@ -18,6 +18,7 @@ export interface CreateChatResponseI {
 export interface ChatItemI {
   id: number;
   name: string;
+  lastMessage: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -46,9 +47,7 @@ export interface MessageI {
 export interface MessageResponseI {
   messages: MessageI[];
 }
-type AsyncThunkConfig = {
-  rejectValue: string;
-};
+
 
 export const createChat = async (createChatData: CreateChatDataI): Promise<CreateChatResponseI> => {
   try {
@@ -93,14 +92,3 @@ export const getAllChatMessages = async (roomId: number): Promise<MessageRespons
 };
 
 
-export const fetchChats = createAsyncThunk<ChatItemI[], string, AsyncThunkConfig>(
-  "chats/fetchChats",
-  async (authId, thunkAPI) => {
-    try {
-      const response = await getAllChats(authId);
-      return response.rooms;
-    } catch (error) {
-      return thunkAPI.rejectWithValue("Failed to get chats");
-    }
-  }
-);

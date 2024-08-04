@@ -8,15 +8,19 @@ export const router = createBrowserRouter([
     path: "/",
     element: <RequireAuth />,
     children: [
-      { index: true, element: <Home /> },
       {
-        path: "profile",
-        element: <Profile />,
+        index: true,
+        element: <Home />,
       },
       {
         path: "messages",
         element: <Messages />,
       },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+
       {
         path: "messages/:chatId",
         element: <Chat />,
