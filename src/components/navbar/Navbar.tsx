@@ -13,10 +13,7 @@ const Navbar = () => {
 
   return (
     <nav
-      style={{
-        boxShadow: "0 -1px 3px -1px rgba(0, 0, 0, 0.1), 0 -2px 2px -1px rgba(0, 0, 0, 0.06)",
-      }}
-      className={`h-[70px] px-3 bg-white w-full fixed bottom-0 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out z-10`}
+      className={`h-[70px] px-3 bg-white w-full fixed bottom-0 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out z-10 shadow-navBar dark:shadow-darkNavBar dark:bg-darkCard`}
     >
       <ul className="relative flex justify-between  max-w-[320px] mx-auto h-full items-center px-6">
         {navbarList.map((navbarItem, index) => {
@@ -28,7 +25,7 @@ const Navbar = () => {
                 location.pathname === navbarItem.link
                   ? "brightness-100 opacity-100"
                   : "brightness-75 opacity-70 hover:brightness-100 hover:opacity-100 "
-              }`}
+              } dark:text-white`}
             >
               <Link
                 to={navbarItem.link}

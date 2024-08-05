@@ -82,7 +82,7 @@ const Chat = () => {
           ))}
         </div>
       </div>
-      <div className="h-[70px] px-7 flex items-center justify-center bg-white w-full fixed bottom-0 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out z-10">
+      <div className="h-[70px] px-7 flex items-center justify-center bg-white w-full fixed bottom-0 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out z-10 shadow-navBar dark:bg-darkCard dark:shadow-darkNavBar">
         <SendMessageForm roomId={chatId as number} />
       </div>
     </>

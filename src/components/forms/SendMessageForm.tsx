@@ -46,7 +46,7 @@ const SendMessageForm = ({roomId}: SendMessageFormProps) => {
           render={({ field }) => (
             <Input
               {...field}
-              className="text-title text-sm w-full selection:text-title selection:bg-gray-200 active:bg-bg placeholder:text-sm hover:bg-bg  focus:bg-bg  py-1.5 px-3 rounded-xl  bg-bg"
+              className="text-title text-sm w-full selection:text-title selection:bg-gray-200 active:bg-bg placeholder:text-sm hover:bg-bg  focus:bg-bg  py-1.5 px-3 rounded-xl bg-bg dark:bg-darkBg dark:text-white dark:placeholder-gray-400 dark:focus:bg-darkBg dark:hover:bg-darkBg dark:active:bg-darkBg dark:selection:bg-gray-300"
               autoComplete="off"
               placeholder="Type here..."
             />

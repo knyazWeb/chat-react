@@ -18,7 +18,7 @@ const ToggleSettingCard = ({ children, defaultToggleValue, changeToggleValue, Im
         <div className={`${bgColor} p-2 rounded-xl`}>
           <Image className={`${iconColor}`} />
         </div>
-        <div className="font-medium text-title text-sm">{children}</div>
+        <div className="font-medium text-title text-sm dark:text-white">{children}</div>
       </div>
       <div className="flex gap-2 items-center justify-end pr-1">
         <Switch

@@ -1,5 +1,9 @@
 import { Button, Input } from "antd";
-import { UserOutlined, EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  EyeTwoTone,
+  EyeInvisibleOutlined,
+} from "@ant-design/icons";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -62,13 +66,16 @@ const RegistrationForm = () => {
           render={({ field }) => (
             <Input
               {...field}
+              className="dark:bg-gray-200"
               size="large"
               placeholder="Name"
               prefix={<UserOutlined />}
             />
           )}
         />
-        {errors.name && <span className="text-blue-500 text-xs">{errors.name.message}</span>}
+        {errors.name && (
+          <span className="text-blue-500 text-xs">{errors.name.message}</span>
+        )}
       </div>
       <div>
         <Controller
@@ -83,13 +90,16 @@ const RegistrationForm = () => {
           }}
           render={({ field }) => (
             <Input
+              className="dark:bg-gray-200"
               {...field}
               size="large"
               placeholder="Email"
             />
           )}
         />
-        {errors.email && <span className="text-blue-500 text-xs">{errors.email.message}</span>}
+        {errors.email && (
+          <span className="text-blue-500 text-xs">{errors.email.message}</span>
+        )}
       </div>
       <div>
         <Controller
@@ -109,19 +119,26 @@ const RegistrationForm = () => {
           render={({ field }) => (
             <Input.Password
               {...field}
+              className="dark:bg-gray-200"
               size="large"
               placeholder="Password"
-              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+              iconRender={(visible) =>
+                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              }
             />
           )}
         />
-        {errors.password && <span className="text-blue-500 text-xs">{errors.password.message}</span>}
+        {errors.password && (
+          <span className="text-blue-500 text-xs">
+            {errors.password.message}
+          </span>
+        )}
       </div>
 
       <Button
         disabled={loading}
         htmlType="submit"
-        className="w-fit mx-auto px-5 mt-3 bg-pblue text-white"
+        className="w-fit mx-auto px-5 mt-3 bg-pblue text-white dark:border-none"
       >
         Registration
       </Button>

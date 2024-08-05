@@ -9,18 +9,18 @@ const ProfileSettingsCard = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   return (
-    <div className="w-full shadow-customLight bg-white rounded-2xl p-5 flex flex-col justify-start gap-4">
+    <div className="w-full shadow-customLight bg-white rounded-2xl p-5 flex flex-col justify-start gap-4 dark:bg-darkCard dark:shadow-darkCustomLight">
       <SelectSettingCard
         Image={Clock}
         defaultValue="Default"
-        bgColor="bg-pblue bg-opacity-15"
+        bgColor="bg-pblue bg-opacity-15 dark:bg-opacity-30"
         iconColor="text-pblue"
         children="Timezone"
       />
       <SelectSettingCard
         Image={Languages}
         defaultValue="English"
-        bgColor="bg-green bg-opacity-15"
+        bgColor="bg-green bg-opacity-15 dark:bg-opacity-30"
         iconColor="text-green"
         children="Language"
       />
@@ -28,7 +28,7 @@ const ProfileSettingsCard = () => {
         Image={Eclipse}
         changeToggleValue={setTheme}
         defaultToggleValue={theme}
-        bgColor="bg-skyblue bg-opacity-15"
+        bgColor="bg-skyblue bg-opacity-15 dark:bg-opacity-30"
         iconColor="text-skyblue"
         children="Dark Mode"
       />

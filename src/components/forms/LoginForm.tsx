@@ -9,7 +9,6 @@ import { regExpEmail } from "@/shared";
 import { LoginFormI } from "./interfaces";
 
 const LoginForm = () => {
-  
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const {
@@ -59,13 +58,16 @@ const LoginForm = () => {
           }}
           render={({ field }) => (
             <Input
+              className="dark:bg-gray-200"
               {...field}
               size="large"
               placeholder="Email"
             />
           )}
         />
-        {errors.email && <span className="text-blue-500 text-xs">{errors.email.message}</span>}
+        {errors.email && (
+          <span className="text-blue-500 text-xs">{errors.email.message}</span>
+        )}
       </div>
       <div>
         <Controller
@@ -86,18 +88,25 @@ const LoginForm = () => {
             <Input.Password
               {...field}
               size="large"
+              className="dark:bg-gray-200"
               placeholder="Password"
-              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+              iconRender={(visible) =>
+                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              }
             />
           )}
         />
-        {errors.password && <span className="text-blue-500 text-xs">{errors.password.message}</span>}
+        {errors.password && (
+          <span className="text-blue-500 text-xs">
+            {errors.password.message}
+          </span>
+        )}
       </div>
 
       <Button
         disabled={loading}
         htmlType="submit"
-        className="w-fit mx-auto px-5 mt-3 bg-pblue text-white"
+        className="w-fit mx-auto px-5 mt-3 bg-pblue text-white dark:border-none"
       >
         Login
       </Button>
