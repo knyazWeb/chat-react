@@ -1,6 +1,7 @@
 import { Link, Navigate } from "react-router-dom";
-import RegistrationForm from "@/components/forms/RegistrationForm";
+
 import { useAppSelector } from "@/hooks";
+import {RegistrationForm} from "@/components";
 
 const Registration = () => {
   

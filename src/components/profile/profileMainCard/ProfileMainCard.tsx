@@ -1,10 +1,12 @@
 import { CustomButton, ProfileAvatar } from "@/components";
 import { useAppSelector } from "@/hooks";
 import { Pen } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 interface ProfileMainCardProps {}
 
 const ProfileMainCard = () => {
   const { userName, userEmail } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate()
   return (
     <div
       
@@ -12,12 +14,12 @@ const ProfileMainCard = () => {
       mb-4 dark:bg-darkCard dark:shadow-darkCustomLight"
     >
       <div className="mb-4">
-        <ProfileAvatar />
+        <ProfileAvatar wrapper={true} sizeWidth={85} sizeHeight={85} />
       </div>
       <div className="text-title text-xl font-semibold dark:text-white">{userName}</div>
       <div className="text-secondary text-xs brightness-90 mb-5 dark:text-gray-200">{userEmail}</div>
       <div className="w-full">
-        <CustomButton>
+        <CustomButton onClick={() => navigate('edit')}>
           <Pen
             strokeWidth={2.75}
             size={15}

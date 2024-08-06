@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 interface ThemeContextType {
   theme: string;
@@ -38,5 +39,23 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     rawSetTheme(theme);
   }, [theme]);
 
-  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: {
+            fontSize: "14px",
+            padding: "10px",
+            ...(theme === "dark" && {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            }),
+          },
+        }}
+      />
+    </ThemeContext.Provider>
+  );
 };

@@ -1,4 +1,4 @@
-import SendMessageForm from './SendMessageForm';
+
 export interface SignupResponseI {
   user: {
     authId: string;
@@ -24,5 +24,12 @@ export interface SignupFormI {
 export interface SendMessageFormI {
   authId: string;
   message: string;
+}
+
+export interface EditFormI {
+  name: string;
+  email: string;
+  currentPassword: string;
+  password: string;
 }
 
