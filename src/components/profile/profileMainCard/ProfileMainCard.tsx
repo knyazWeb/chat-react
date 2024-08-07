@@ -19,7 +19,7 @@ const ProfileMainCard = () => {
       <div className="text-title text-xl font-semibold dark:text-white">{userName}</div>
       <div className="text-secondary text-xs brightness-90 mb-5 dark:text-gray-200">{userEmail}</div>
       <div className="w-full">
-        <CustomButton onClick={() => navigate('edit')}>
+        <CustomButton type="button" onClick={() => navigate('edit')}>
           <Pen
             strokeWidth={2.75}
             size={15}
