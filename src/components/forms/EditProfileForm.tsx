@@ -1,33 +1,31 @@
-import {Controller, SubmitHandler, useForm} from "react-hook-form";
-import {Button, Input} from "antd";
-import {EyeInvisibleOutlined, EyeTwoTone, UserOutlined} from "@ant-design/icons";
-import {regExpEmail} from "@/shared";
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {EditFormI} from "@/components";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { Button, Input } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone, UserOutlined } from "@ant-design/icons";
+import { regExpEmail } from "@/shared";
+import { useState } from "react";
+import { EditFormI } from "@/components";
 import toast from "react-hot-toast";
-import {useAppSelector} from "@/hooks";
-
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { updateUser } from "@/services";
+import { logout } from "@/store";
+import { useNavigate } from "react-router-dom";
 
 const EditProfileForm = () => {
-
   const [loading, setLoading] = useState<boolean>(false);
   const userSession = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
     control,
     resetField,
     handleSubmit,
     formState: { errors },
-  } = useForm<EditFormI>(
-    {
-      defaultValues: {
-        name: userSession.userName ?? "",
-        email: userSession.userEmail ?? "",
-        password: "",
-      },
-    }
-  );
+  } = useForm<EditFormI>({
+    defaultValues: {
+      name: userSession.userName ?? "",
+      email: userSession.userEmail ?? "",
+    },
+  });
 
   const onSubmit: SubmitHandler<EditFormI> = async (data) => {
     setLoading(true);
@@ -35,16 +33,16 @@ const EditProfileForm = () => {
     const EditFormData = {
       name: data.name,
       email: data.email,
-      password: data.password,
+      currentPassword: data.currentPassword,
     };
     try {
-      //TODO: create loading state in toast while waiting registration response
-
+      const updateData = await updateUser(userSession.userEmail ?? "", EditFormData);
+      toast.success("User updated successfully");
     } catch (e) {
-      resetField("name");
-      resetField("email");
-      resetField("password");
-      toast.error("Registration was failed");
+      resetField("name", {defaultValue: userSession.userName ?? ""});
+      resetField("email", {defaultValue: userSession.userEmail ?? ""});
+      resetField("currentPassword");
+      toast.error("Update was failed");
       console.error(e);
     }
     setLoading(false);
@@ -65,13 +63,13 @@ const EditProfileForm = () => {
               message: "Min length is 3 characters",
             },
           }}
-          render={({field}) => (
+          render={({ field }) => (
             <Input
               {...field}
               className="dark:bg-gray-200"
               size="large"
               placeholder="Name"
-              prefix={<UserOutlined/>}
+              prefix={<UserOutlined />}
             />
           )}
         />
@@ -88,11 +86,12 @@ const EditProfileForm = () => {
               message: "Invalid email",
             },
           }}
-          render={({field}) => (
+          render={({ field }) => (
             <Input
               className="dark:bg-gray-200"
               {...field}
               size="large"
+              autoComplete="email"
               placeholder="Email"
             />
           )}
@@ -114,44 +113,18 @@ const EditProfileForm = () => {
               message: "Max length is 32 characters",
             },
           }}
-          render={({field}) => (
+          render={({ field }) => (
             <Input.Password
               {...field}
               className="dark:bg-gray-200"
               size="large"
               placeholder="Current password"
-              iconRender={(visible) => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>)}
+              autoComplete="current-password"
+              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
           )}
         />
-        {errors.password && <span className="text-blue-500 text-xs">{errors.password.message}</span>}
-      </div>
-      <div>
-        <Controller
-          name="password"
-          control={control}
-          rules={{
-            required: "Password is required",
-            minLength: {
-              value: 6,
-              message: "Min length is 6 characters",
-            },
-            maxLength: {
-              value: 20,
-              message: "Max length is 32 characters",
-            },
-          }}
-          render={({field}) => (
-            <Input.Password
-              {...field}
-              className="dark:bg-gray-200"
-              size="large"
-              placeholder="New password"
-              iconRender={(visible) => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>)}
-            />
-          )}
-        />
-        {errors.password && <span className="text-blue-500 text-xs">{errors.password.message}</span>}
+        {errors.currentPassword && <span className="text-blue-500 text-xs">{errors.currentPassword.message}</span>}
       </div>
 
       <Button

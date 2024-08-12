@@ -4,9 +4,10 @@ import { useRef } from "react";
 
 interface CustomInputImageFileProps {
   text: string;
+  onClick?: () => void;
 }
 
-const CustomInputAvatarFile = ({ text }: CustomInputImageFileProps) => {
+const CustomInputAvatarFile = ({ text, onClick }: CustomInputImageFileProps) => {
   const userSession = useAppSelector((state) => state.auth);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +36,7 @@ const CustomInputAvatarFile = ({ text }: CustomInputImageFileProps) => {
         accept="image/*"
         onChange={handleFileChange}
         ref={fileInputRef}
+        onClick={onClick}
       />
     </label>
   );

@@ -35,6 +35,3 @@ const DropdownMenu = ({ isDropdownActive, setIsDropdownActive, children }: Dropd
 
 export default DropdownMenu;
 
-function setIsDropdownActive(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}

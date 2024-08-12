@@ -30,6 +30,5 @@ export interface EditFormI {
   name: string;
   email: string;
   currentPassword: string;
-  password: string;
 }
 

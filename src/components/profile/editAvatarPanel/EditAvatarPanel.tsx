@@ -47,7 +47,7 @@ const EditAvatarPanel = () => {
             <button className="hover:bg-stroke px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start">
               Delete Avatar
             </button>
-            <CustomInputAvatarFile text="Upload Avatar" />
+            <CustomInputAvatarFile onClick={() => setIsDropdownOpen(false)} text="Upload Avatar" />
             <button className="hover:bg-stroke px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start">
               Take a Photo
             </button>

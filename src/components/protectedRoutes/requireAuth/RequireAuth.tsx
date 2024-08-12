@@ -14,6 +14,8 @@ const RequireAuth = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
+        
+        // TODO: сделать кастомное получение пользователя с обновлением user таблицы
         const { data } = await supabase.auth.getUser();
         //FIXME: УБРАТЬ CL
         console.log("data", data);

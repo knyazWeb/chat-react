@@ -32,3 +32,21 @@ export async function registrationUser(signupFormData: SignupFormI): Promise<Sig
     throw new Error("Registration was failed");
   }
 }
+
+export async function updateUser(currentEmail: string, updateFormData: any): Promise<void> {
+  try {
+    const updateResponse = await axios({
+      method: "put",
+      url: `${import.meta.env.VITE_SERVER_URL}/api/auth/update`,
+      data: {
+        currentEmail,
+        password: updateFormData.currentPassword,
+        username: updateFormData.name,
+        email: updateFormData.email,
+      },
+    });
+    return updateResponse.data;
+  } catch (error) {
+    throw new Error("Updated was failed");
+  }
+}
