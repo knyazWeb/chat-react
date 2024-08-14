@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 const EditAvatarPanel = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+   
   useOnClickOutside(dropdownRef, () => {
     if (isDropdownOpen) {
       setIsDropdownOpen(false);

@@ -1,4 +1,3 @@
-
 export interface SignupResponseI {
   user: {
     authId: string;
@@ -32,3 +31,12 @@ export interface EditFormI {
   currentPassword: string;
 }
 
+export interface EditFormResponseI {
+  user: {
+    authId: string;
+    email: string;
+    user_metadata: {
+      first_name: string;
+    }
+  };
+}

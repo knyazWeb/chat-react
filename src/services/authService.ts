@@ -1,7 +1,7 @@
-import { SignupResponseI } from "@/components/forms/interfaces";
+import { EditFormI, EditFormResponseI, SignupResponseI } from "@/components/forms/interfaces";
 import { supabase } from "@/helpers";
 import { LoginFormI, SignupFormI } from "@/components";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { AuthTokenResponsePassword } from "@supabase/supabase-js";
 
 export async function loginUser(loginFormData: LoginFormI): Promise<AuthTokenResponsePassword> {
@@ -33,7 +33,7 @@ export async function registrationUser(signupFormData: SignupFormI): Promise<Sig
   }
 }
 
-export async function updateUser(currentEmail: string, updateFormData: any): Promise<void> {
+export async function updateUser(currentEmail: string, updateFormData: EditFormI): Promise<EditFormResponseI> {
   try {
     const updateResponse = await axios({
       method: "put",
@@ -46,7 +46,10 @@ export async function updateUser(currentEmail: string, updateFormData: any): Pro
       },
     });
     return updateResponse.data;
-  } catch (error) {
-    throw new Error("Updated was failed");
+  } catch (error: AxiosError | any) {
+    if (error.response?.data?.error) {
+      throw new Error(error.response.data.error);
+    }
+    throw new Error("Update was failed");
   }
 }

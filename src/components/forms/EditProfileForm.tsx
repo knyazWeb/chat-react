@@ -7,7 +7,7 @@ import { EditFormI } from "@/components";
 import toast from "react-hot-toast";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { updateUser } from "@/services";
-import { logout } from "@/store";
+import { update } from "@/store";
 import { useNavigate } from "react-router-dom";
 
 const EditProfileForm = () => {
@@ -37,13 +37,22 @@ const EditProfileForm = () => {
     };
     try {
       const updateData = await updateUser(userSession.userEmail ?? "", EditFormData);
+      console.log(updateData);
+      dispatch(
+        update({
+          userId: updateData.user.authId,
+          userName: updateData.user.user_metadata.first_name,
+          userEmail: updateData.user.email,
+          isAuth: true,
+        })
+      );
+      navigate("/profile");
       toast.success("User updated successfully");
-    } catch (e) {
-      resetField("name", {defaultValue: userSession.userName ?? ""});
-      resetField("email", {defaultValue: userSession.userEmail ?? ""});
+    } catch (error: any) {
+      resetField("name", { defaultValue: userSession.userName ?? "" });
+      resetField("email", { defaultValue: userSession.userEmail ?? "" });
       resetField("currentPassword");
-      toast.error("Update was failed");
-      console.error(e);
+      toast.error(error.message ? error.message : "Update was failed");
     }
     setLoading(false);
   };
@@ -91,6 +100,7 @@ const EditProfileForm = () => {
               className="dark:bg-gray-200"
               {...field}
               size="large"
+              disabled={true}
               autoComplete="email"
               placeholder="Email"
             />

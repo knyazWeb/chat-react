@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserAuthI } from "../interfaces";
 
-
 const initialState: UserAuthI = {
   userId: null,
   userName: null,
@@ -25,8 +24,12 @@ export const authSlice = createSlice({
       state.userEmail = null;
       state.isAuth = false;
     },
+    update: (state, action: PayloadAction<UserAuthI>) => {
+      state.userName = action.payload.userName;
+      state.userEmail = action.payload.userEmail;
+    },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, update } = authSlice.actions;
 export const authReducer = authSlice.reducer;
