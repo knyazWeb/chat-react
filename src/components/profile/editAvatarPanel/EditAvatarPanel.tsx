@@ -22,8 +22,7 @@ const EditAvatarPanel = () => {
         <div className="shrink-0 w-[70px] h-[70px]">
           <ProfileAvatar
             wrapper={false}
-            sizeWidth={70}
-            sizeHeight={70}
+         
           />
         </div>
 
@@ -48,7 +47,7 @@ const EditAvatarPanel = () => {
             <button className="hover:bg-stroke px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start">
               Delete Avatar
             </button>
-            <CustomInputAvatarFile onClick={() => setIsDropdownOpen(false)} text="Upload Avatar" />
+            <CustomInputAvatarFile closeDropdown={() => setIsDropdownOpen(false)} text="Upload Avatar" />
             <button className="hover:bg-stroke px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start">
               Take a Photo
             </button>

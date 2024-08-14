@@ -1,23 +1,24 @@
 import avatar from "/avatar.png";
+import { useAppSelector } from "@/hooks";
 
 interface ProfileAvatarProps {
   wrapper: boolean;
-  sizeWidth: number;
-  sizeHeight: number;
 }
 
-const ProfileAvatar = ({ wrapper, sizeHeight, sizeWidth }: ProfileAvatarProps) => {
+const ProfileAvatar = ({ wrapper }: ProfileAvatarProps) => {
+  const userSession = useAppSelector((state) => state.auth);
+
   return (
     <div
-      className={`relative ${wrapper ? "bg-gradient-to-br from-[#AE6DDD] to-[#4E1BB4] p-[3px]" : ""} rounded-full select-none w-[${sizeWidth}px] h-[${sizeHeight}px]`}
+      className={`h-full w-full ${
+        wrapper ? "bg-gradient-to-br from-[#AE6DDD] to-[#4E1BB4] p-[3px]" : ""
+      } rounded-full select-none  overflow-hidden`}
     >
-      <div>
-        <img
-          className="w-full h-full rounded-full"
-          src={avatar}
-          alt=""
-        />
-      </div>
+      <img
+        className={` w-full h-full object-fill rounded-full`}
+        src={userSession.avatarUrl || avatar}
+        alt=""
+      />
     </div>
   );
 };

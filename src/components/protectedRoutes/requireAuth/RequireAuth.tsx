@@ -14,9 +14,9 @@ const RequireAuth = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        
-        // TODO: сделать кастомное получение пользователя с обновлением user таблицы
+        // TODO: сделать кастомное получение пользователя с обновлением user таблицы (for update email)
         const { data } = await supabase.auth.getUser();
+        const { data: avatarData } = await supabase.storage.from("avatars").download(`${data.user?.id}/avatar`);
         //FIXME: УБРАТЬ CL
         console.log("data", data);
         if (data.user && data.user.email && data.user.id && data.user.user_metadata.first_name) {
@@ -26,6 +26,7 @@ const RequireAuth = () => {
               userName: data.user.user_metadata.first_name,
               userEmail: data.user.email,
               isAuth: true,
+              avatarUrl: avatarData ? URL.createObjectURL(avatarData) : null,
             })
           );
           setIsAuth(true);

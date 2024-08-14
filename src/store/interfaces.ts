@@ -3,4 +3,5 @@ export interface UserAuthI {
   userName: string | null;
   userEmail: string | null;
   isAuth: boolean;
+  avatarUrl: string | null;
 }

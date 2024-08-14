@@ -1,28 +1,37 @@
 import { supabase } from "@/helpers";
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { updateAvatar } from "@/store";
 import { useRef } from "react";
+import toast from "react-hot-toast";
 
 interface CustomInputImageFileProps {
   text: string;
-  onClick?: () => void;
+  closeDropdown?: () => void;
 }
 
-const CustomInputAvatarFile = ({ text, onClick }: CustomInputImageFileProps) => {
+const CustomInputAvatarFile = ({ text, closeDropdown }: CustomInputImageFileProps) => {
   const userSession = useAppSelector((state) => state.auth);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
+
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const toastId = toast.loading("Uploading avatar...");
     const file = event.target.files?.[0];
     if (file) {
-      console.log(file);
+      closeDropdown && closeDropdown();
 
+      const objectURL = URL.createObjectURL(file);
       const { data, error } = await supabase.storage.from("avatars").upload(`${userSession.userId}/avatar`, file, {
         upsert: true,
       });
+      if (data && !error) {
+        dispatch(updateAvatar({ avatarUrl: objectURL }));
+      }
 
       if (error) {
-        console.error("Error uploading file:", error);
+        toast.error("Failed to upload avatar", { id: toastId });
       } else {
-        console.log("File uploaded successfully:", data);
+        toast.success("Avatar uploaded successfully", { id: toastId });
       }
     }
   };
@@ -36,7 +45,6 @@ const CustomInputAvatarFile = ({ text, onClick }: CustomInputImageFileProps) => 
         accept="image/*"
         onChange={handleFileChange}
         ref={fileInputRef}
-        onClick={onClick}
       />
     </label>
   );
