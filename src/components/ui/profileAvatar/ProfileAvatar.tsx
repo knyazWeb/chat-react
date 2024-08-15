@@ -15,7 +15,7 @@ const ProfileAvatar = ({ wrapper }: ProfileAvatarProps) => {
       } rounded-full select-none  overflow-hidden`}
     >
       <img
-        className={` w-full h-full object-fill rounded-full`}
+        className={`w-full h-full  object-fill rounded-full`}
         src={userSession.avatarUrl || avatar}
         alt=""
       />

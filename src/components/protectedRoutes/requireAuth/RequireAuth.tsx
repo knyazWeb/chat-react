@@ -9,6 +9,7 @@ import { Outlet, Navigate } from "react-router-dom";
 const RequireAuth = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isAuth, setIsAuth] = useState(false);
+  const uniqueParam = new Date().getTime();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,7 +17,10 @@ const RequireAuth = () => {
       try {
         // TODO: сделать кастомное получение пользователя с обновлением user таблицы (for update email)
         const { data } = await supabase.auth.getUser();
-        const { data: avatarData } = await supabase.storage.from("avatars").download(`${data.user?.id}/avatar`);
+        const { data: avatarData } = await supabase.storage
+          .from("avatars")
+          .download(`${data.user?.id}/avatar?${uniqueParam}`);
+        console.log("avatarData", avatarData);
         //FIXME: УБРАТЬ CL
         console.log("data", data);
         if (data.user && data.user.email && data.user.id && data.user.user_metadata.first_name) {

@@ -44,6 +44,7 @@ const EditProfileForm = () => {
           userName: updateData.user.user_metadata.first_name,
           userEmail: updateData.user.email,
           isAuth: true,
+          avatarUrl: userSession.avatarUrl,
         })
       );
       navigate("/profile");
@@ -97,7 +98,7 @@ const EditProfileForm = () => {
           }}
           render={({ field }) => (
             <Input
-              className="dark:bg-gray-200"
+              className="dark:bg-gray-200 dark:disabled:bg-zinc-500 dark:disabled:text-gray-300"
               {...field}
               size="large"
               disabled={true}
