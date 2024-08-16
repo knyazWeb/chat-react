@@ -64,7 +64,7 @@ const EditAvatarPanel = () => {
             <button
               disabled={!userSession.avatarUrl}
               onClick={deleteAvatar}
-              className="hover:bg-stroke px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start"
+              className="hover:bg-stroke px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start dark:hover:bg-zinc-600"
             >
               Delete Avatar
             </button>

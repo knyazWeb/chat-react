@@ -14,14 +14,15 @@ const AnonymousRoute = () => {
       try {
         const { data } = await supabase.auth.getUser();
         if (data.user && data.user.email && data.user.id && data.user.user_metadata.first_name) {
-          dispatch(
-            login({
-              userId: data.user.id,
-              userName: data.user.user_metadata.first_name,
-              userEmail: data.user.email,
-              isAuth: true,
-            })
-          );
+          //dispatch(
+          //  login({
+          //    userId: data.user.id,
+          //    userName: data.user.user_metadata.first_name,
+          //    userEmail: data.user.email,
+          //    isAuth: true,
+          //    avatarUrl: data.user.user_metadata.avatar_url,
+          //  })
+          //);
           setIsAuth(true);
         }
       } finally {

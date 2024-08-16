@@ -89,6 +89,7 @@ const LoginForm = () => {
               {...field}
               size="large"
               className="dark:bg-gray-200"
+              autoComplete="password"
               placeholder="Password"
               iconRender={(visible) =>
                 visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />

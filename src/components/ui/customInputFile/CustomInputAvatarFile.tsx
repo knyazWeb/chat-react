@@ -36,7 +36,7 @@ const CustomInputAvatarFile = ({ text, closeDropdown }: CustomInputImageFileProp
     }
   };
   return (
-    <label className=" cursor-pointer hover:bg-stroke px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start">
+    <label className=" cursor-pointer hover:bg-stroke px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start dark:hover:bg-zinc-600">
       {text}
       <input
         className="hidden"

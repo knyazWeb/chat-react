@@ -14,7 +14,7 @@ const SendMessageForm = ({roomId}: SendMessageFormProps) => {
   const userSession = useAppSelector((state) => state.auth);
   const [loading, setLoading] = useState<boolean>(false);
   const socket = useSocket();
-  const { control, register, resetField, handleSubmit } = useForm<SendMessageFormI>();
+  const { control, resetField, handleSubmit } = useForm<SendMessageFormI>();
 
   const onSubmit: SubmitHandler<SendMessageFormI> = async (data) => {
     setLoading(true);

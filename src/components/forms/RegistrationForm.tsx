@@ -113,6 +113,7 @@ const RegistrationForm = () => {
               {...field}
               className="dark:bg-gray-200"
               size="large"
+              autoComplete="password"
               placeholder="Password"
               iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
