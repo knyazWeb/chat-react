@@ -1,14 +1,14 @@
-import avatarD from "/avatar.png";
+import avatarPlaceholder from "/avatar.png";
 
 interface MessageCloudProps {
   isOwner: boolean;
   message: string;
   time: string;
-  avatar?: string;
+  partnerAvatarUrl: string | null;
 }
 
-const MessageCloud = ({ isOwner, message, time, avatar }: MessageCloudProps) => {
-  const messageTime = new Date(time).toLocaleString('ru-RU' ,{ hour: "numeric", minute: "numeric" });
+const MessageCloud = ({ isOwner, message, time, partnerAvatarUrl }: MessageCloudProps) => {
+  const messageTime = new Date(time).toLocaleString("ru-RU", { hour: "numeric", minute: "numeric" });
   return (
     <div className={`flex  items-center ${isOwner ? "justify-end" : "justify-end flex-row-reverse"} gap-1.5 w-full`}>
       {/*TODO: ADD TIME DIV */}
@@ -22,10 +22,11 @@ const MessageCloud = ({ isOwner, message, time, avatar }: MessageCloudProps) => 
       >
         {message}
       </div>
-      {!isOwner && !avatar && (
+      {!isOwner && (
         <div className="w-[32px] h-[32px] rounded-full flex-shrink-0 self-end ">
           <img
-            src={avatarD}
+            className="w-[32px] h-[32px] rounded-full"
+            src={partnerAvatarUrl || avatarPlaceholder}
             alt=""
           />
         </div>

@@ -20,7 +20,7 @@ const EditAvatarPanel = () => {
 
   const deleteAvatar = async () => {
     const toastId = toast.loading("Removing avatar...");
-
+    setIsDropdownOpen(false);
     const { data, error } = await supabase.storage.from("avatars").remove([`${userSession.userId}/avatar`]);
     if (data && !error) {
       dispatch(updateAvatar({ avatarUrl: null }));

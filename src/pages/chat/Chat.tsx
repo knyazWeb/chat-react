@@ -1,4 +1,5 @@
 import { MessageCloud, SendMessageForm, TopBar } from "@/components";
+import { supabase } from "@/helpers";
 import { useAppDispatch, useAppSelector, useSocket } from "@/hooks";
 import { getAllChatMessages, MessageI } from "@/services";
 import { changeLastMessage } from "@/store";
@@ -14,12 +15,18 @@ const Chat = () => {
   const params = useParams();
   const chatId = params.chatId ? +params.chatId : null;
   const allChats = useAppSelector((state) => state.chats);
+  
   const currentChatName = useMemo(() => {
     return allChats.find((chat) => chat.id === chatId)?.name;
   }, [chatId, allChats]);
+  const partnerID = useMemo(() => {
+    return allChats.find((chat) => chat.id === chatId)?.partnerID;
+  }, [chatId, allChats]);
+  
   const [messages, setMessages] = useState<MessageI[]>([]);
+  const [partnerAvatarUrl, setPartnerAvatarUrl] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "instant", block: "end" });
   };
@@ -58,6 +65,15 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
+    const fetchPartnerAvatar = async () => {
+      const { data: avatarData } = await supabase.storage.from("avatars").download(`${partnerID}/avatar`);
+      setPartnerAvatarUrl(avatarData ? URL.createObjectURL(avatarData) : null);
+    };
+
+    fetchPartnerAvatar();
+  }, []);
+
+  useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
@@ -74,6 +90,7 @@ const Chat = () => {
         <div className="flex flex-col gap-4 justify-center w-full h-full">
           {messages.map((message) => (
             <MessageCloud
+              partnerAvatarUrl={partnerAvatarUrl || null}
               key={message.id}
               message={message.text}
               isOwner={message.authId === userSession.userId}

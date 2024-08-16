@@ -1,4 +1,3 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface CreateChatDataI {
@@ -21,6 +20,7 @@ export interface ChatItemI {
   lastMessage: string;
   createdAt: string;
   updatedAt: string;
+  partnerID: string;
 }
 export interface ChatsResponseI {
   rooms: ChatItemI[];
