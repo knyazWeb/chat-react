@@ -7,10 +7,12 @@ import { EyeTwoTone, EyeInvisibleOutlined } from "@ant-design/icons";
 import { loginUser } from "@/services";
 import { regExpEmail } from "@/shared";
 import { LoginFormI } from "./interfaces";
+import { useTranslation } from "react-i18next";
 
 const LoginForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const {
     control,
     resetField,
@@ -31,7 +33,7 @@ const LoginForm = () => {
         resetField("email");
         resetField("password");
       } else if (loginData.data.user) {
-        toast.success("User logged in successfully");
+        toast.success(t("User logged in successfully"));
         navigate("/", { replace: true });
       }
     } catch (e) {
@@ -61,13 +63,11 @@ const LoginForm = () => {
               className="dark:bg-gray-200"
               {...field}
               size="large"
-              placeholder="Email"
+              placeholder={t("Email")}
             />
           )}
         />
-        {errors.email && (
-          <span className="text-blue-500 text-xs">{errors.email.message}</span>
-        )}
+        {errors.email && <span className="text-blue-500 text-xs">{errors.email.message}</span>}
       </div>
       <div>
         <Controller
@@ -90,18 +90,12 @@ const LoginForm = () => {
               size="large"
               className="dark:bg-gray-200"
               autoComplete="password"
-              placeholder="Password"
-              iconRender={(visible) =>
-                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-              }
+              placeholder={t("Password")}
+              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
           )}
         />
-        {errors.password && (
-          <span className="text-blue-500 text-xs">
-            {errors.password.message}
-          </span>
-        )}
+        {errors.password && <span className="text-blue-500 text-xs">{errors.password.message}</span>}
       </div>
 
       <Button
@@ -109,7 +103,7 @@ const LoginForm = () => {
         htmlType="submit"
         className="w-fit mx-auto px-5 mt-3 bg-pblue text-white dark:border-none"
       >
-        Login
+        {t("Login")}
       </Button>
     </form>
   );

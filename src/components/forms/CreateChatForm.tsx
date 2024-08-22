@@ -7,11 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { CreateChatFormI } from "./interfaces";
 import { createChat } from "@/services";
 import { useAppSelector } from "@/hooks";
+import { useTranslation } from "react-i18next";
 
 const CreateChatForm = () => {
   const userSession = useAppSelector((state) => state.auth);
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const {
     control,
     resetField,
@@ -30,7 +32,7 @@ const CreateChatForm = () => {
         friendEmail: createChatFormData.email as string,
       });
       //TODO: нужно обработать когда такая комната уже существует
-      toast.success("Chat created successfully");
+      toast.success(t("Chat created successfully"));
       navigate("/messages");
     } catch (e) {
       resetField("email");
@@ -57,10 +59,12 @@ const CreateChatForm = () => {
           }}
           render={({ field }) => (
             <Input
-                className={"dark:bg-darkBg dark:text-white dark:placeholder-gray-400 dark:focus:bg-darkBg dark:hover:bg-darkBg dark:active:bg-darkBg dark:selection:bg-gray-300"}
+              className={
+                "dark:bg-darkBg dark:text-white dark:placeholder-gray-400 dark:focus:bg-darkBg dark:hover:bg-darkBg dark:active:bg-darkBg dark:selection:bg-gray-300"
+              }
               {...field}
               size="large"
-              placeholder="Friend's email"
+              placeholder={t("Friend's email")}
             />
           )}
         />
@@ -71,7 +75,7 @@ const CreateChatForm = () => {
         htmlType="submit"
         className={`w-fit mx-auto px-5 mt-3 bg-pblue dark:border-none text-white ${loading ? "opacity-50" : ""}`}
       >
-        Create chat
+        {t("Create chat")}
       </Button>
     </form>
   );

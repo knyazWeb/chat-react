@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "@/router";
 import { store } from "./store";
 import { ThemeProvider } from "./shared";
+import "./shared/i18nConfig/i18n";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

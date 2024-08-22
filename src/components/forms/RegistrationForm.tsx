@@ -7,10 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { registrationUser } from "@/services";
 import { regExpEmail } from "@/shared";
 import { SignupFormI } from "./interfaces";
+import { useTranslation } from "react-i18next";
 
 const RegistrationForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const {
     control,
     resetField,
@@ -30,14 +32,14 @@ const RegistrationForm = () => {
       //TODO: create loading state in toast while waiting registration response
       const signupData = await registrationUser(signupFormData);
       if (signupData.user.authId) {
-        toast.success("User created successfully");
+        toast.success(t("User created successfully"));
         navigate("/login");
       }
     } catch (e) {
       resetField("name");
       resetField("email");
       resetField("password");
-      toast.error("Registration was failed");
+      toast.error(t("Registration was failed"));
       console.error(e);
     }
     setLoading(false);
@@ -64,7 +66,7 @@ const RegistrationForm = () => {
               {...field}
               className="dark:bg-gray-200"
               size="large"
-              placeholder="Name"
+              placeholder={t("Name")}
               prefix={<UserOutlined />}
             />
           )}
@@ -87,7 +89,7 @@ const RegistrationForm = () => {
               className="dark:bg-gray-200"
               {...field}
               size="large"
-              placeholder="Email"
+              placeholder={t("Email")}
             />
           )}
         />
@@ -114,7 +116,7 @@ const RegistrationForm = () => {
               className="dark:bg-gray-200"
               size="large"
               autoComplete="password"
-              placeholder="Password"
+              placeholder={t("Password")}
               iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
           )}
@@ -127,7 +129,7 @@ const RegistrationForm = () => {
         htmlType="submit"
         className="w-fit mx-auto px-5 mt-3 bg-pblue text-white dark:border-none"
       >
-        Registration
+        {t("Registration")}
       </Button>
     </form>
   );

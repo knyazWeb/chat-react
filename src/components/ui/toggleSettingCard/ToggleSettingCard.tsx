@@ -1,6 +1,7 @@
 import { Switch } from "antd";
 import { LucideProps } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ToggleSettingCardProps {
   children: React.ReactNode;
@@ -11,20 +12,28 @@ interface ToggleSettingCardProps {
   bgColor: string;
 }
 
-const ToggleSettingCard = ({ children, defaultToggleValue, changeToggleValue, Image, iconColor, bgColor }: ToggleSettingCardProps) => {
+const ToggleSettingCard = ({
+  children,
+  defaultToggleValue,
+  changeToggleValue,
+  Image,
+  iconColor,
+  bgColor,
+}: ToggleSettingCardProps) => {
+  const { t } = useTranslation();
   return (
     <div className="bg-transparent flex justify-between items-center gap-2 w-full">
       <div className="flex gap-2 items-center justify-start">
         <div className={`${bgColor} p-2 rounded-xl`}>
           <Image className={`${iconColor}`} />
         </div>
-        <div className="font-medium text-title text-sm dark:text-white">{children}</div>
+        <div className="font-medium text-title text-sm dark:text-white">{t(`${children}`)}</div>
       </div>
       <div className="flex gap-2 items-center justify-end pr-1">
         <Switch
           onChange={() => changeToggleValue(defaultToggleValue === "dark" ? "light" : "dark")}
           className="bg-stroke aria-checked:bg-pblue "
-          defaultChecked={defaultToggleValue === "dark" ? true : false} 
+          defaultChecked={defaultToggleValue === "dark" ? true : false}
           size="small"
         />
       </div>

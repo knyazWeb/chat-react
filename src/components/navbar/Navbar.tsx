@@ -2,10 +2,12 @@ import { CustomAddButton } from "@/components";
 import { navbarList } from "./navbarList";
 import { Link, matchPath, useLocation, useNavigate } from "react-router-dom";
 import { exclusionPaths } from "./exclusionPaths";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const isExcluded = exclusionPaths.some((path) => {
     return matchPath(path, location.pathname);
   });
@@ -32,7 +34,7 @@ const Navbar = () => {
                 className="flex flex-col gap-1 items-center"
               >
                 <ImageComponent size={28} />
-                <span className="text-xs font-medium">{navbarItem.name}</span>
+                <span className="text-xs font-medium">{t(`${navbarItem.name}`)}</span>
               </Link>
             </li>
           );

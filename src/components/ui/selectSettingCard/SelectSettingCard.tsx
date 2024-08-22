@@ -1,6 +1,7 @@
 import { LucideProps } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface SelectSettingCardProps {
   children: React.ReactNode;
@@ -11,16 +12,26 @@ interface SelectSettingCardProps {
 }
 
 const SelectSettingCard = ({ children, defaultValue, Image, iconColor, bgColor }: SelectSettingCardProps) => {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem("language", lng); // Сохраняем выбранный язык в localStorage
+  };
+
   return (
     <div className="bg-transparent flex justify-between items-center gap-2 w-full ">
       <div className="flex gap-2 items-center justify-start">
         <div className={`${bgColor} p-2 rounded-xl`}>
           <Image className={`${iconColor}`} />
         </div>
-        <div className="font-medium text-title text-sm dark:text-white">{children}</div>
+        <div className="font-medium text-title text-sm dark:text-white">{t(`${children}`)}</div>
       </div>
-      <div className="flex gap-2 items-center justify-end">
-        <div className="text-secondary text-xs dark:text-white">{defaultValue}</div>
+      <div
+        onClick={() => changeLanguage("ru")}
+        className="flex gap-2 items-center justify-end"
+      >
+        <div className="text-secondary text-xs dark:text-white">{t(`${defaultValue}`)}</div>
         <button type="button">
           <ChevronRight
             className="text-secondary dark:text-white"

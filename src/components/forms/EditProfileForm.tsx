@@ -9,12 +9,14 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { updateUser } from "@/services";
 import { update } from "@/store";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const EditProfileForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const userSession = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const {
     control,
     resetField,
@@ -48,7 +50,7 @@ const EditProfileForm = () => {
         })
       );
       navigate("/profile");
-      toast.success("User updated successfully");
+      toast.success(t("User updated successfully"));
     } catch (error: any) {
       resetField("name", { defaultValue: userSession.userName ?? "" });
       resetField("email", { defaultValue: userSession.userEmail ?? "" });
@@ -78,7 +80,7 @@ const EditProfileForm = () => {
               {...field}
               className="dark:bg-gray-200"
               size="large"
-              placeholder="Name"
+              placeholder={t("Name")}
               prefix={<UserOutlined />}
             />
           )}
@@ -129,7 +131,7 @@ const EditProfileForm = () => {
               {...field}
               className="dark:bg-gray-200"
               size="large"
-              placeholder="Current password"
+              placeholder={t("Current password")}
               autoComplete="current-password"
               iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
             />
@@ -143,7 +145,7 @@ const EditProfileForm = () => {
         htmlType="submit"
         className="w-fit mx-auto px-5 mt-3 bg-pblue text-white dark:border-none"
       >
-        Save changes
+        {t("Save changes")}
       </Button>
     </form>
   );

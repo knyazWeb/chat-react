@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { updateAvatar } from "@/store";
 import { useRef } from "react";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 interface CustomInputImageFileProps {
   text: string;
@@ -13,9 +14,10 @@ const CustomInputAvatarFile = ({ text, closeDropdown }: CustomInputImageFileProp
   const userSession = useAppSelector((state) => state.auth);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
+  const {t} = useTranslation();
 
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const toastId = toast.loading("Uploading avatar...");
+    const toastId = toast.loading(t("Uploading avatar..."));
     const file = event.target.files?.[0];
     if (file) {
       closeDropdown && closeDropdown();
@@ -29,9 +31,9 @@ const CustomInputAvatarFile = ({ text, closeDropdown }: CustomInputImageFileProp
       }
 
       if (error) {
-        toast.error("Failed to upload avatar", { id: toastId });
+        toast.error(t("Failed to upload avatar"), { id: toastId });
       } else {
-        toast.success("Avatar uploaded successfully", { id: toastId });
+        toast.success(t("Avatar uploaded successfully"), { id: toastId });
       }
     }
   };

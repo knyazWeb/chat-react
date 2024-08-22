@@ -2,11 +2,12 @@ import { ArrowLeft } from "lucide-react";
 
 import { Ellipsis } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { CustomInputAvatarFile, DropdownMenu } from "../ui";
+import { DropdownMenu } from "../ui";
 import { useState, useRef } from "react";
 import { useAppDispatch, useOnClickOutside } from "@/hooks";
 import { logout } from "@/store";
 import { supabase } from "@/helpers";
+import { useTranslation } from "react-i18next";
 interface TopBarProps {
   children: React.ReactNode;
 }
@@ -16,6 +17,8 @@ const TopBar = ({ children }: TopBarProps) => {
   const dispatch = useAppDispatch();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+  
   useOnClickOutside(dropdownRef, () => {
     if (isDropdownOpen) {
       setIsDropdownOpen(false);
@@ -62,7 +65,7 @@ const TopBar = ({ children }: TopBarProps) => {
             onClick={signOut}
             className="hover:bg-stroke px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start font-bold text-red dark:text-rose-500 dark:hover:bg-zinc-600"
           >
-            Exit
+            {t("Exit")}
           </button>
         </DropdownMenu>
       </div>
