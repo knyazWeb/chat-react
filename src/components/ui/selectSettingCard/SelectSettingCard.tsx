@@ -9,15 +9,13 @@ interface SelectSettingCardProps {
   Image: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
   iconColor: string;
   bgColor: string;
+  onClick?: () => void;
 }
 
-const SelectSettingCard = ({ children, defaultValue, Image, iconColor, bgColor }: SelectSettingCardProps) => {
+const SelectSettingCard = ({ children, defaultValue, Image, iconColor, bgColor, onClick }: SelectSettingCardProps) => {
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-    localStorage.setItem("language", lng); // Сохраняем выбранный язык в localStorage
-  };
+  
 
   return (
     <div className="bg-transparent flex justify-between items-center gap-2 w-full ">
@@ -28,7 +26,7 @@ const SelectSettingCard = ({ children, defaultValue, Image, iconColor, bgColor }
         <div className="font-medium text-title text-sm dark:text-white">{t(`${children}`)}</div>
       </div>
       <div
-        onClick={() => changeLanguage("ru")}
+        onClick={onClick}
         className="flex gap-2 items-center justify-end"
       >
         <div className="text-secondary text-xs dark:text-white">{t(`${defaultValue}`)}</div>

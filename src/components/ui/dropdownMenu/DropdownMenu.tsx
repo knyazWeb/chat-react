@@ -11,7 +11,7 @@ interface DropdownMenuProps {
 const DropdownMenu = ({ isDropdownActive, children }: DropdownMenuProps) => {
   const dropdownMenuRef = useRef<HTMLDivElement>(null);
   return (
-    <div className="absolute w-full z-30 top-[115%] ">
+    <div className="absolute w-fit z-30 top-[115%] ">
       <Transition
         nodeRef={dropdownMenuRef}
         in={isDropdownActive}
