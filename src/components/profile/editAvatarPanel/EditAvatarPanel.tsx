@@ -35,7 +35,7 @@ const EditAvatarPanel = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-5">
+    <div className="w-full flex flex-col gap-5 sm:max-w-[640px]">
       <div className="text-title flex items-center gap-2.5 font-medium text-sm dark:text-white">
         <div className="bg-[#EFB7A4] w-3.5 h-5 rounded-sm"></div>
         {t("Avatar")}

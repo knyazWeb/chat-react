@@ -1,5 +1,4 @@
-import { MessageCard } from "@/components";
-import TopBar from "@/components/topBar/TopBar";
+import { MessageCard, TopBar } from "@/components";
 import { useAppSelector } from "@/hooks";
 import { useTranslation } from "react-i18next";
 

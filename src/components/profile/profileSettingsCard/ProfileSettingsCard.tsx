@@ -29,7 +29,7 @@ const ProfileSettingsCard = () => {
   };
 
   return (
-    <div className="w-full shadow-customLight bg-white rounded-2xl p-5 flex flex-col justify-start gap-4 dark:bg-darkCard dark:shadow-darkCustomLight">
+    <div className="w-full shadow-customLight bg-white rounded-2xl p-5 flex flex-col justify-start gap-4 dark:bg-darkCard dark:shadow-darkCustomLight sm:max-w-[640px]">
       <SelectSettingCard
         Image={Clock}
         defaultValue="Default"

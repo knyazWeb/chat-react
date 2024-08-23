@@ -1,5 +1,4 @@
-import { ProfileMainCard, ProfileSettingsCard } from "@/components";
-import TopBar from "@/components/topBar/TopBar";
+import { ProfileMainCard, ProfileSettingsCard, TopBar } from "@/components";
 import { useTranslation } from "react-i18next";
 
 const Profile = () => {
