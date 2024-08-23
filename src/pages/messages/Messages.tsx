@@ -8,7 +8,7 @@ const Messages = () => {
   const { t } = useTranslation();
   
   return (
-    <div className=" pt-[70px] flex flex-col items-center justify-start pb-[110px]">
+    <div className=" pt-[70px] flex flex-col items-center justify-start pb-[110px] sm:max-w-[640px] sm:mx-auto">
       <TopBar>{t("Messages")}</TopBar>
       <div className="flex flex-col items-center justify-center w-full h-full">
         {chats.length &&

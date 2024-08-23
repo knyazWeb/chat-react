@@ -7,7 +7,7 @@ interface CustomAddButtonProps {
 
 const CustomAddButton = ({type, onClick}: CustomAddButtonProps) => {
   return (
-    <button type={type} onClick={onClick} className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2  bg-blueGradient rounded-full p-3 text-white">
+    <button type={type} onClick={onClick} className="absolute top-0 left-[51.5%] -translate-x-1/2 -translate-y-1/2  bg-blueGradient rounded-full p-3 text-white">
       <MessageSquarePlus  />
     </button>
   );
