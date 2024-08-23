@@ -1,3 +1,4 @@
+import { Loader } from "@/components";
 import { supabase } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { login, logout } from "@/store";
@@ -33,7 +34,7 @@ const AnonymousRoute = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   } else if (!loading && !isAuth) {
     dispatch(logout());
   }

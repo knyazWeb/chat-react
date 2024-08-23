@@ -7,3 +7,4 @@ export { default as ToggleSettingCard } from "./toggleSettingCard/ToggleSettingC
 export { default as MessageCloud } from "./messageCloud/MessageCloud";
 export { default as CustomInputAvatarFile } from "./customInputFile/CustomInputAvatarFile";
 export { default as DropdownMenu } from "./dropdownMenu/DropdownMenu";
+export { default as Loader } from "./loader/Loader";

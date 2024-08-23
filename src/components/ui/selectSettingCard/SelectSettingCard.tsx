@@ -27,7 +27,7 @@ const SelectSettingCard = ({ children, defaultValue, Image, iconColor, bgColor, 
       </div>
       <div
         onClick={onClick}
-        className="flex gap-2 items-center justify-end"
+        className="flex gap-2 items-center justify-end cursor-pointer"
       >
         <div className="text-secondary text-xs dark:text-white">{t(`${defaultValue}`)}</div>
         <button type="button">

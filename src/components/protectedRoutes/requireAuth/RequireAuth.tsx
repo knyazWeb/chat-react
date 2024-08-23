@@ -1,4 +1,4 @@
-import { Navbar } from "@/components";
+import { Loader, Navbar } from "@/components";
 import { supabase } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
 import { SocketProvider } from "@/shared";
@@ -17,7 +17,6 @@ const RequireAuth = () => {
       try {
         // TODO: сделать кастомное получение пользователя с обновлением user таблицы (for update email)
         const { data } = await supabase.auth.getUser();
-        //FIXME: УБРАТЬ CL
         console.log("data", data);
         if (data.user && data.user.email && data.user.id && data.user.user_metadata.first_name) {
           const { data: avatarData } = await supabase.storage
@@ -43,8 +42,7 @@ const RequireAuth = () => {
   }, []);
 
   if (loading) {
-    //TODO: СДЕЛАТЬ LOADER
-    return <div className="text-black">Loading...</div>;
+    return <Loader />
   } else if (!loading && !isAuth) {
     dispatch(logout());
   }

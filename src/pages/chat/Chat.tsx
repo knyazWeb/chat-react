@@ -1,4 +1,4 @@
-import { MessageCloud, SendMessageForm, TopBar } from "@/components";
+import { Loader, MessageCloud, SendMessageForm, TopBar } from "@/components";
 import { supabase } from "@/helpers";
 import { useAppDispatch, useAppSelector, useSocket } from "@/hooks";
 import { getAllChatMessages, MessageI } from "@/services";
@@ -78,7 +78,7 @@ const Chat = () => {
   }, [messages]);
 
   if (loading) {
-    return <div className="text-title">Loading...</div>;
+    return <Loader />;
   }
   return (
     <>

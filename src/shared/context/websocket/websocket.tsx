@@ -1,3 +1,4 @@
+import { Loader } from "@/components";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
@@ -24,7 +25,7 @@ const SocketProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   if (!isConnected) {
-    return <div className="text-title">Connecting...</div>;
+    return <Loader />;
   }
   return <SocketContext.Provider value={{ socket: socketRef.current }}>{children}</SocketContext.Provider>;
 };

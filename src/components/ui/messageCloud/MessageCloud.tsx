@@ -11,7 +11,6 @@ const MessageCloud = ({ isOwner, message, time, partnerAvatarUrl }: MessageCloud
   const messageTime = new Date(time).toLocaleString("ru-RU", { hour: "numeric", minute: "numeric" });
   return (
     <div className={`flex  items-center ${isOwner ? "justify-end" : "justify-end flex-row-reverse"} gap-1.5 w-full`}>
-      {/*TODO: ADD TIME DIV */}
       <div className="text-body text-xs dark:text-gray-300">{messageTime}</div>
       <div
         className={`px-4 py-3 text-sm w-fit max-w-[65vw] shadow-md ${

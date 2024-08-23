@@ -1,7 +1,6 @@
 import { MessageCard } from "@/components";
 import TopBar from "@/components/topBar/TopBar";
 import { useAppSelector } from "@/hooks";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 const Messages = () => {
