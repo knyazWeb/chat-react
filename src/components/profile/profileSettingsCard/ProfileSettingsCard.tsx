@@ -13,13 +13,22 @@ const ProfileSettingsCard = () => {
   const [currentLanguage, setCurrentLanguage] = useState<string>(i18n.language);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [isTimezoneOpen, setIsTimezoneOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownTimezoneRef = useRef<HTMLDivElement>(null);
 
   useOnClickOutside(dropdownRef, () => {
     if (isDropdownOpen) {
       setIsDropdownOpen(false);
     }
   });
+  
+  useOnClickOutside(dropdownTimezoneRef, () => {
+    if (isTimezoneOpen) {
+      setIsTimezoneOpen(false);
+    }
+  });
+
 
   const changeLanguage = (lng: string) => {
     setIsDropdownOpen(false);
@@ -30,13 +39,33 @@ const ProfileSettingsCard = () => {
 
   return (
     <div className="w-full shadow-customLight bg-white rounded-2xl p-5 flex flex-col justify-start gap-4 dark:bg-darkCard dark:shadow-darkCustomLight sm:max-w-[640px]">
-      <SelectSettingCard
-        Image={Clock}
-        defaultValue="Default"
-        bgColor="bg-pblue bg-opacity-15 dark:bg-opacity-30"
-        iconColor="text-pblue"
-        children="Timezone"
-      />
+      <div
+        className="relative w-full flex justify-end items-center"
+        ref={dropdownTimezoneRef}
+      >
+        <SelectSettingCard
+          Image={Clock}
+          defaultValue="Default"
+          bgColor="bg-pblue bg-opacity-15 dark:bg-opacity-30"
+          iconColor="text-pblue"
+          children="Timezone"
+          onClick={() => setIsTimezoneOpen(!isTimezoneOpen)}
+        />
+
+        {isTimezoneOpen && (
+          <DropdownMenu
+            isDropdownActive={isTimezoneOpen}
+            setIsDropdownActive={setIsTimezoneOpen}
+          >
+            <button
+              disabled={true}
+              className={` px-2 py-1 rounded-md duration-200 ease-in-out w-full text-start font-bold bg-body text-white text-xs dark:text-white`}
+            >
+              {t("Default")}
+            </button>
+          </DropdownMenu>
+        )}
+      </div>
       <div
         className="relative w-full flex justify-end items-center"
         ref={dropdownRef}

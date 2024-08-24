@@ -33,7 +33,7 @@ const SendMessageForm = ({roomId}: SendMessageFormProps) => {
   };
   return (
     <form
-      className="flex w-full justify-center gap-2"
+      className="flex w-full justify-center gap-2 sm:max-w-[600px]"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="w-full">
