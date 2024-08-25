@@ -15,9 +15,7 @@ const RequireAuth = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        // TODO: сделать кастомное получение пользователя с обновлением user таблицы (for update email)
         const { data } = await supabase.auth.getUser();
-        console.log("data", data);
         if (data.user && data.user.email && data.user.id && data.user.user_metadata.first_name) {
           const { data: avatarData } = await supabase.storage
             .from("avatars")

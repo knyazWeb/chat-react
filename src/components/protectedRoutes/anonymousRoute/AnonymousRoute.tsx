@@ -1,7 +1,7 @@
 import { Loader } from "@/components";
 import { supabase } from "@/helpers";
 import { useAppDispatch } from "@/hooks";
-import { login, logout } from "@/store";
+import {  logout } from "@/store";
 import { useEffect, useState } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 

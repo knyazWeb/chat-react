@@ -1,5 +1,5 @@
 import { Loader } from "@/components";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext,  useEffect, useRef, useState } from "react";
 import { io, Socket } from "socket.io-client";
 
 export interface SocketContextType {

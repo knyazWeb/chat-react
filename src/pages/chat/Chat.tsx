@@ -6,7 +6,6 @@ import { changeLastMessage } from "@/store";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
-interface ChatProps {}
 
 const Chat = () => {
   const [loading, setLoading] = useState<boolean>(false);

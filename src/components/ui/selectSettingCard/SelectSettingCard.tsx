@@ -13,7 +13,7 @@ interface SelectSettingCardProps {
 }
 
 const SelectSettingCard = ({ children, defaultValue, Image, iconColor, bgColor, onClick }: SelectSettingCardProps) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   
 

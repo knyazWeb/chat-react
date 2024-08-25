@@ -6,13 +6,15 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { CreateChatFormI } from "./interfaces";
 import { createChat } from "@/services";
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useTranslation } from "react-i18next";
+import { fetchChats } from "@/store";
 
 const CreateChatForm = () => {
   const userSession = useAppSelector((state) => state.auth);
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const {
     control,
@@ -31,8 +33,8 @@ const CreateChatForm = () => {
         creatorEmail: userSession.userEmail as string,
         friendEmail: createChatFormData.email as string,
       });
-      //TODO: нужно обработать когда такая комната уже существует
       toast.success(t("Chat created successfully"));
+      await dispatch(fetchChats(userSession.userId as string));
       navigate("/messages");
     } catch (e) {
       resetField("email");

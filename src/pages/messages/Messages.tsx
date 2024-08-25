@@ -5,12 +5,12 @@ import { useTranslation } from "react-i18next";
 const Messages = () => {
   const chats = useAppSelector((state) => state.chats);
   const { t } = useTranslation();
-  
+
   return (
     <div className=" pt-[70px] flex flex-col items-center justify-start pb-[110px] sm:max-w-[640px] sm:mx-auto">
       <TopBar>{t("Messages")}</TopBar>
       <div className="flex flex-col items-center justify-center w-full h-full">
-        {chats.length &&
+        {chats.length > 0 ? (
           chats.map((item, index) => {
             return (
               <div
@@ -26,7 +26,10 @@ const Messages = () => {
                 />
               </div>
             );
-          })}
+          })
+        ) : (
+          <div className="text-title dark:text-gray-400">{t("There are no cheats yet")}</div>
+        )}
       </div>
     </div>
   );

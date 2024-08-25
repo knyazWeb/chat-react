@@ -39,7 +39,6 @@ const EditProfileForm = () => {
     };
     try {
       const updateData = await updateUser(userSession.userEmail ?? "", EditFormData);
-      console.log(updateData);
       dispatch(
         update({
           userId: updateData.user.authId,

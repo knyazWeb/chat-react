@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useAppSelector } from "@/hooks";
 import {RegistrationForm} from "@/components";

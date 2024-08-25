@@ -11,7 +11,7 @@ interface MessageCardProps {
 }
 
 
-const MessageCard = ({ name, lastMessage, lastMessageTime, chatId, partnerID }: MessageCardProps) => {
+const MessageCard = ({ name, lastMessage, chatId, partnerID }: MessageCardProps) => {
   const navigate = useNavigate();
 
   const navigateUserToChat = () => {
