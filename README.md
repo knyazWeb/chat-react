@@ -1,6 +1,6 @@
 # 🚀 Rocket Chat App
 
-#### ▶️ Live Demo - [Rocket Chat App](https://rocket-chat-knyazweb.vercel.app)
+#### ▶️ Live Demo - [Rocket Chat App](https://rocket-chat-knyazweb.vercel.app) | ⚠️ Disabled to avoid paying server  
 
 ### ⚙️ Built with:
 
